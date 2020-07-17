@@ -1,3 +1,4 @@
+# Author Diep Nguyen
 # halong-booking
 
 ## Project setup
