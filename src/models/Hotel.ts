@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default class Hotel {
     name: string = '';
     srcImg: string = '';

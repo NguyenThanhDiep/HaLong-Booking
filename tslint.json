@@ -1,0 +1,16 @@
+{
+  "rules": {
+      "max-line-length": {
+          "options": [250]
+      },
+      "no-console": {
+          "severity": "warning",
+          "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+      }
+  },
+  "jsRules": {
+      "max-line-length": {
+          "options": [250]
+      }
+  }
+}
