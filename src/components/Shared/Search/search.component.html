@@ -1,0 +1,14 @@
+<div class="search-area">
+    <b-img
+        src="https://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/pagePropertiesImage/ha-long-bay.jpg.jpg"
+        alt="Ha Long Background" block fuild center class="search-img" />
+    <div class="search-form px-4 py-3">
+        <h5 class="text-left mb-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
+        <div class="d-flex justify-content-end mb-3">
+            <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn" v-model="nameHotel"></b-input>
+            <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng" v-model="checkInDate"></b-form-datepicker>
+            <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng" v-model="checkOutDate"></b-form-datepicker>
+            <b-button variant="primary" @click="onSearchHotel">Tìm</b-button>
+        </div>
+    </div>
+</div>
