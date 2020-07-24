@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
 @Component({})
 export default class SearchComponent extends Vue {
     //-----Prop-----//
+    @Prop({ default: 700 }) heightImg!: number;
+
     nameHotel: string = '';
     checkInDate: string = '';
     checkOutDate: string = '';

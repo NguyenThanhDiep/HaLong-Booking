@@ -4,8 +4,13 @@ import Component from 'vue-class-component';
 import Hotel from '@/models/Hotel';
 import Scene from '@/models/Scene';
 import Dish from '@/models/Dish';
+import SearchComponent from '@/components/Shared/Search/search.component.vue';
 
-@Component({})
+@Component({
+    components: {
+        SearchComponent
+    }
+})
 export default class HomeComponent extends Vue {
     //-----Prop-----//
     hotels: Array<Hotel> = [];
