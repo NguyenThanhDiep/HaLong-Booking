@@ -1,3 +1,12 @@
 .hotel {
     color: $color-blue;
+    font-size: 16px;
+    .title {
+        font-weight: bolder;
+        font-size: 18px;
+    }
+    .panel-filter {
+        border: 1px solid $color-grey;
+        box-shadow: 1px 1px 1px 1px #d9d9d9;
+    }
 }

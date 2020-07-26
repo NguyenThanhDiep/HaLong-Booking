@@ -3,67 +3,74 @@
         <SearchComponent heightImg="300"/>
     </div>
     <div class="row text-left">
-        <div class="col-3">
-            <div>
-                <div>Theo mức giá</div>
-                <div class="d-flex justify-content-between">
-                    <div>0đ</div>
-                    <div>5.000.000đ</div>
+        <div class="col-3 p-3 pl-4">
+            <div class="panel-filter p-3">
+                <div class="mb-3">
+                    <div class="font-weight-bold">Theo mức giá</div>
+                    <div class="d-flex justify-content-between">
+                        <div>0đ</div>
+                        <div>5.000.000đ</div>
+                    </div>
+                    <b-form-input type="range" min="0" max="5000000" step="100000"></b-form-input>
+                    <b-form-checkbox class="black small">Đang giảm giá</b-form-checkbox>
                 </div>
-                <b-form-input type="range"></b-form-input>
-                <b-form-checkbox>Đang giảm giá</b-form-checkbox>
-            </div>
-            <div>
-                <div>Theo tiêu chuẩn sao</div>
-                <b-form-group stacked>
-                    <b-form-checkbox>
-                        <i class="fas fa-star"></i>
-                    </b-form-checkbox>
-                    <b-form-checkbox>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </b-form-checkbox>
-                    <b-form-checkbox>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </b-form-checkbox>
-                    <b-form-checkbox>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </b-form-checkbox>
-                    <b-form-checkbox>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </b-form-checkbox>
-                </b-form-group>
-            </div>
-            <div>
-                <div>Dịch vụ miễn phí</div>
-                <b-form-group stacked>
-
-                </b-form-group>
-            </div>
-            <div>
-                <div>Các tiện ích</div>
-                <b-form-group stacked>
-
-                </b-form-group>
+                <div>
+                    <div class="font-weight-bold">Theo tiêu chuẩn sao</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterStars" stacked>
+                            <b-form-checkbox v-for="star in starHotel" :key="star" :value="star">
+                                <i class="fas fa-star yellow" v-for="s in star"></i>
+                            </b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                    {{filterStars}}
+                </div>
+                <div>
+                    <div class="font-weight-bold">Dịch vụ miễn phí</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterFreeServices" stacked>
+                            <b-form-checkbox v-for="freeService in freeServiceHotel" :key="freeService.code" :value="freeService.code">{{freeService.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                        {{filterFreeServices}}
+                    </b-form-group>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Các tiện ích</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filerServices" stacked>
+                            <b-form-checkbox v-for="service in serviceHotel" :key="service.code" :value="service.code">{{service.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
             </div>
         </div>
         <div class="col-9 text-left">
-            <div class="d-flex justify-content-start">
-                <div>Sắp xếp theo</div>
+            <div class="d-flex justify-content-start p-3">
+                <div class="font-weight-bold">Sắp xếp theo</div>
                 <div class="mx-5">Tiêu chuẩn sao <i class="fas fa-caret-up"></i></div>
                 <div>Giá phòng <i class="fas fa-caret-down"></i></div>
             </div>
-            <div>
-
+            <div class="my-3">
+                <b-row v-for="(hotel, index) in hotelsFiltered" :key="hotel.name" class="p-3">
+                    <b-col cols="4">
+                        <b-img :src="hotel.srcImg" fluid :alt="'Card Image ' + index"></b-img>
+                    </b-col>
+                    <b-col cols="5" class="d-flex flex-column">
+                        <div class="title">Khách sạn {{hotel.name}}</div>
+                        <div class="yellow"><i class="fas fa-star" v-for="star in hotel.star"></i></div>
+                        <div><span class="black">{{hotel.address}}</span> <b-button variant="link"><i class="fas fa-map-marker-alt"></i> Bản đồ</b-button></div>
+                        <div class="font-weight-bold">Dịch vụ và tiện ích</div>
+                        <div v-for="(service, index) in [...hotel.freeServices, ...hotel.services]" class="black" v-if="index<=4 || hotel.isShowAll">
+                            - {{service.name}}
+                        </div>
+                        <div v-if="!hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=true" class="pointer">...hiện thêm >></div>
+                        <div v-if="hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=false" class="pointer"><< thu gọn</div>
+                    </b-col>
+                    <b-col cols="3" class="d-flex flex-column">
+                        <div class="yellow font-weight-bold">{{hotel.price}}/đêm</div>
+                        <div class="mt-auto"><b-button variant="primary">Đặt phòng</b-button></div>
+                    </b-col>
+                </b-row>
             </div>
         </div>
     </div>
