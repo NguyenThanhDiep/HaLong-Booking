@@ -6,11 +6,12 @@ export default class Hotel {
     address: string = '';
     freeServices: Array<{ code: string; name: string}> = [];
     services: Array<{ code: string; name: string }> = [];
+    isSale: boolean = false;
     isShowAll: boolean = false;
     
     constructor(name: string, scrImg: string, price: number, star: number = 0,
         address: string = '', freeServices: Array<{ code: string; name: string }> = [],
-        services: Array<{ code: string; name: string }> = []) {
+        services: Array<{ code: string; name: string }> = [], isSale = false) {
         this.name = name;
         this.srcImg = scrImg;
         this.price = price;
@@ -18,6 +19,7 @@ export default class Hotel {
         this.address = address;
         this.freeServices = freeServices;
         this.services = services;
+        this.isSale = isSale;
     }
 
     get totalServises(): number {
@@ -55,19 +57,25 @@ export const HotelMockData = [
     new Hotel('Novotel Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1300000, 1,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.FreeAnSang],
-        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]),
+        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM],
+        true
+    ),
     new Hotel('Central Luxury Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1700000, 1,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.Free3Bua],
-        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]),
+        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]
+    ),
     new Hotel('StarCity Hạ Long Bay', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 2300000, 2,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.ThemGiuongPhu],
-        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]),
+        [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]
+    ),
     new Hotel('Sài Gòn Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 2500000, 2,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.Free3Bua, FreeService.FreeAnSang],
-        [ServiceHotel.HoBoi, ServiceHotel.Massage, ServiceHotel.ThangMay, ServiceHotel.PhongGym, ServiceHotel.GiatLa]),
+        [ServiceHotel.HoBoi, ServiceHotel.Massage, ServiceHotel.ThangMay, ServiceHotel.PhongGym, ServiceHotel.GiatLa],
+        true
+    ),
     new Hotel('Grand Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 3100000, 3,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.ThemGiuongPhu, FreeService.FreeAnSang],
@@ -75,22 +83,36 @@ export const HotelMockData = [
     new Hotel('Paradise Suites Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 3800000, 3,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.Free3Bua],
-        [ServiceHotel.NhaHang, ServiceHotel.DuaDonSanBay, ServiceHotel.BaiDoXe, ServiceHotel.HoTroDatTour, ServiceHotel.DoAnTaiPhong]),
+        [ServiceHotel.NhaHang, ServiceHotel.DuaDonSanBay, ServiceHotel.BaiDoXe, ServiceHotel.HoTroDatTour, ServiceHotel.DoAnTaiPhong]
+    ),
     new Hotel('Mường Thanh Luxury Quảng Ninh', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 4200000, 4,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.FreeAnSang],
-        [ServiceHotel.PhongGym, ServiceHotel.ChapNhanThuCung, ServiceHotel.LeTan24, ServiceHotel.BaiDoXe, ServiceHotel.ThangMay]),
+        [ServiceHotel.PhongGym, ServiceHotel.ChapNhanThuCung, ServiceHotel.LeTan24, ServiceHotel.BaiDoXe, ServiceHotel.ThangMay]
+    ),
     new Hotel('Royal Lotus Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 4500000, 4,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.ThemGiuongPhu],
-        [ServiceHotel.ChapNhanThuCung, ServiceHotel.ThueXeMay, ServiceHotel.GiatLa, ServiceHotel.HoBoi, ServiceHotel.Massage]),
+        [ServiceHotel.ChapNhanThuCung, ServiceHotel.ThueXeMay, ServiceHotel.GiatLa, ServiceHotel.HoBoi, ServiceHotel.Massage],
+        true
+    ),
     new Hotel('FiveStar Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 4900000, 5,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.Free3Bua],
-        [ServiceHotel.BaiDoXe, ServiceHotel.ThueXeMay, ServiceHotel.HoTroDatTour, ServiceHotel.LeTan24, ServiceHotel.DuaDonSanBay]),
+        [ServiceHotel.BaiDoXe, ServiceHotel.ThueXeMay, ServiceHotel.HoTroDatTour, ServiceHotel.LeTan24, ServiceHotel.DuaDonSanBay]
+    ),
     new Hotel('Royal Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 5000000, 5,
         '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
         [FreeService.FreeAnSang],
-        [ServiceHotel.DuaDonSanBay, ServiceHotel.HoTroDatTour, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM])
+        [ServiceHotel.DuaDonSanBay, ServiceHotel.HoTroDatTour, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM]
+    )
 
 ]
+
+export class FilterCriteria {
+    price: Array<number> = [];
+    onlyIsSale: boolean = false;
+    star: Array<number> = [];
+    freeService: Array<string> = [];
+    service: Array<string> = [];
+}
