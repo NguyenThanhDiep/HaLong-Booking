@@ -1,15 +1,19 @@
+import Option from './Option';
+import Room from './Room';
+
 export default class Hotel {
     name: string = '';
     srcImg: string = '';
     price: number = 0;
     star: number = 0;
     address: string = '';
-    freeServices: Array<{ code: string; name: string}> = [];
-    services: Array<{ code: string; name: string }> = [];
+    freeServices: Array<Option> = [];
+    services: Array<Option> = [];
     isSale: boolean = false;
     isShowAll: boolean = false;
+    rooms: Array<Room> = [];
     
-    constructor(name: string, scrImg: string, price: number, star: number = 0,
+    constructor(name: string = '', scrImg: string = '', price: number = 0, star: number = 0,
         address: string = '', freeServices: Array<{ code: string; name: string }> = [],
         services: Array<{ code: string; name: string }> = [], isSale = false) {
         this.name = name;

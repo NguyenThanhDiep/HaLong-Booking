@@ -134,4 +134,7 @@ export default class HotelComponent extends Vue {
         this.sortStarIcon = this.sortPriceIcon = '';
     }
 
+    onClickBookHotel() {
+        this.$router.push('Room');
+    }
 }

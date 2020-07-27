@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default class Dish {
     name: string = '';
     srcImg: string = '';
