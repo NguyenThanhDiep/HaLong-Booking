@@ -9,6 +9,9 @@ import Room from '@/models/Room';
 })
 export default class RoomComponent extends Vue {
     hotel: Hotel = new Hotel();
+    imgSelected: string = '';
+    allImg: Array<string> = [];
+    mainPropsImg: object = {};
 
     mounted() {
         //TO DO get data from API
@@ -24,6 +27,25 @@ export default class RoomComponent extends Vue {
         room.capacity = ['2 người lớn', 'Có thể kê thêm giường phụ'];
         this.hotel.rooms.push(room);
         this.hotel.rooms.push(room);
+
+        this.allImg = [
+            "https://r-cf.bstatic.com/images/hotel/max1024x768/195/195444614.jpg",
+            "https://r-cf.bstatic.com/images/hotel/max1024x768/192/192958857.jpg",
+            "https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3",
+            "https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg",
+            "https://www.welcome-hotels.com/site/assets/files/35059/welcome_hotel_marburg_lobby_2k.2560x1600.jpg",
+            "https://pix10.agoda.net/hotelImages/209/2092140/2092140_17031512040051555216.jpg?s=1024x768"
+        ];
+        this.imgSelected = this.allImg[0];
+        this.mainPropsImg = {
+            center: true,
+            fluidGrow: true,
+            blank: true,
+            blankColor: '#bbb',
+            width: 100,
+            height: 50,
+            class: 'm-1 mx-5'
+        }
 
     }
 }

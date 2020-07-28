@@ -7,8 +7,15 @@
             <div class="large font-weight-bold mr-3">Khách sạn {{hotel.name}}</div>
             <div><i class="fas fa-star yellow" v-for="s in hotel.star"></i></div>
         </div>
-        <div class="my-3">
-
+        <div class="my-3 row">
+            <div class="col-7">
+                <b-img-lazy :src="imgSelected" width="100%"></b-img-lazy>
+            </div>
+            <div class="col-5 d-flex flex-row flex-wrap">
+                <div class="w-50" v-for="img in allImg">
+                    <b-img-lazy :src="img" v-bind="mainPropsImg" fluid></b-img-lazy>
+                </div>
+            </div>
         </div>
         <div>
             <div class="d-flex mb-5 text-left" v-for="(room, index) in hotel.rooms">
