@@ -48,4 +48,8 @@ export default class RoomComponent extends Vue {
         }
 
     }
+
+    onClickImg(img: string) {
+        this.imgSelected = img;
+    }
 }

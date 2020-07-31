@@ -8,12 +8,12 @@
             <div><i class="fas fa-star yellow" v-for="s in hotel.star"></i></div>
         </div>
         <div class="my-3 row">
-            <div class="col-7">
-                <b-img-lazy :src="imgSelected" width="100%"></b-img-lazy>
+            <div class="col-7 container-fluid p-1">
+                <img :src="imgSelected" class="img-fluid w-100 h-100 rounded">
             </div>
             <div class="col-5 d-flex flex-row flex-wrap">
-                <div class="w-50" v-for="img in allImg">
-                    <b-img-lazy :src="img" v-bind="mainPropsImg" fluid></b-img-lazy>
+                <div v-for="img in allImg" class="text-center w-50 p-1">
+                    <img :src="img" class="rounded h-100 w-100 pointer" @click="onClickImg(img)">
                 </div>
             </div>
         </div>
