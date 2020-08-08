@@ -29,6 +29,10 @@ export default class Hotel {
     get totalServises(): number {
         return this.freeServices.length + this.services.length;
     }
+
+    get allServices(): Array<Option> {
+        return [...this.freeServices, ...this.services];
+    }
 }
 
 export const StarHotel = [1, 2, 3, 4, 5]

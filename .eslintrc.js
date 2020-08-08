@@ -15,6 +15,7 @@ module.exports = {
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-var-requires": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "vue/html-self-closing": "off"
+      "vue/html-self-closing": "off",
+      "@typescript-eslint/no-non-null-assertion": "warn",
     }
   };

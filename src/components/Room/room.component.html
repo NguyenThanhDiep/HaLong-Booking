@@ -9,11 +9,12 @@
         </div>
         <div class="my-3 row">
             <div class="col-7 container-fluid p-1">
-                <img :src="imgSelected" class="img-fluid w-100 h-100 rounded main-img">
+                <img :src="imgSelected" class="img-fluid w-100 h-100 rounded" id="mainImg">
             </div>
             <div class="col-5 d-flex flex-row flex-wrap">
-                <div v-for="img in allImg" class="text-center w-50 p-1">
-                    <img :src="img" class="rounded h-100 w-100 pointer" @click="onClickImg(img)">
+                <div v-for="(img, index) in allImg" class="text-center w-50 p-1">
+                    <img :src="img" :class="['rounded h-100 w-100 pointer option-img', index === indexActiveImg ? 'active-img': '']" 
+                        @click="onClickImg(img, index)">
                 </div>
             </div>
         </div>
@@ -45,7 +46,7 @@
                     <div class="yellow font-weight-bold large">{{room.price}} đ</div>
                     <div>/đêm</div>
                     <div class="mt-auto">
-                        <b-button variant="primary">Đặt phòng</b-button>
+                        <b-button variant="primary" @click="onClickBookRoom">Đặt phòng</b-button>
                     </div>
                 </div>
             </div>

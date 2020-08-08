@@ -3,6 +3,7 @@ import Component from 'vue-class-component';
 import SearchComponent from '@/components/Shared/Search/search.component.vue';
 import Hotel from '@/models/Hotel';
 import Room from '@/models/Room';
+import { Watch } from 'vue-property-decorator';
 
 @Component({
     components: { SearchComponent }
@@ -12,6 +13,7 @@ export default class RoomComponent extends Vue {
     imgSelected: string = '';
     allImg: Array<string> = [];
     mainPropsImg: object = {};
+    indexActiveImg: number = 0;
 
     mounted() {
         //TO DO get data from API
@@ -49,7 +51,21 @@ export default class RoomComponent extends Vue {
 
     }
 
-    onClickImg(img: string) {
+    onClickImg(img: string, index: number) {
         this.imgSelected = img;
+        this.indexActiveImg = index;
+    }
+
+    @Watch('imgSelected')
+    async onImgSelectedChange() {
+        const mainImg = document.getElementById('mainImg');
+        mainImg?.classList.add('main-img');
+        setTimeout(() => {
+            mainImg?.classList.remove('main-img');
+        }, 2000);
+    }
+
+    onClickBookRoom() {
+        this.$router.push('Booking');
     }
 }
