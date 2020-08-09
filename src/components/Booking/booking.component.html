@@ -11,46 +11,53 @@
                         <div class="col-6">
                             <div class="mb-2">Ngày nhận phòng</div>
                             <div>
-                                <b-form-datepicker placeholder="Ngày nhận phòng"></b-form-datepicker>
+                                <b-form-datepicker placeholder="Ngày nhận phòng" 
+                                    :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                                    locale="vi" :value-as-date="true"
+                                    @input="onInputCheckInDate"></b-form-datepicker>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-2">Ngày trả phòng</div>
                             <div>
-                                <b-form-datepicker placeholder="Ngày trả phòng"></b-form-datepicker>
+                                <b-form-datepicker placeholder="Ngày trả phòng"
+                                    :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                                    locale="vi" :value-as-date="true"
+                                    @input="onInputCheckoutDate"
+                                ></b-form-datepicker>
                             </div>
                         </div>
                     </div>
                     <div class="my-3">
                         <div class="mb-2">Số lượng người lớn</div>
-                        <div><b-form-input></b-form-input></div>
+                        <div><b-form-input v-model="numberAdult" type="number"></b-form-input></div>
                     </div>
                     <div class="my-3">
                         <div class="mb-2">Số lượng trẻ em</div>
-                        <div><b-form-input></b-form-input></div>
+                        <div><b-form-input v-model="numberChildren" type="number"></b-form-input></div>
                     </div>
                     <div class="my-3">
                         <div class="mb-2">Số lượng em bé</div>
-                        <div><b-form-input></b-form-input></div>
+                        <div><b-form-input v-model="numberBaby" type="number"></b-form-input></div>
                     </div>
                     <div class="my-3">
                         <div class="mb-2">Họ tên</div>
-                        <div><b-form-input></b-form-input></div>
+                        <div><b-form-input v-model="fullName" type="text"></b-form-input></div>
                     </div>
                     <div class="row my-3">
                         <div class="col-6">
                             <div class="mb-2">Điện thoại</div>
-                            <div><b-form-input></b-form-input></div>
+                            <div><b-form-input v-model="phoneNumber" type="tel"></b-form-input></div>
                         </div>
                         <div class="col-6">
                             <div class="mb-2">Email</div>
-                            <div><b-form-input></b-form-input></div>
+                            <div><b-form-input v-model="email" type="email"></b-form-input></div>
                         </div>
                     </div>
                     <div class="my-3">
                         <div class="mb-2">Ghi chú</div>
                         <div>
-                            <b-form-textarea></b-form-textarea>
+                            <b-form-textarea v-model="note"></b-form-textarea>
                         </div>
                     </div>
                 </div>
@@ -74,37 +81,34 @@
                 <div class="d-flex my-3">
                     <div class="text-right ml-3">
                         <div class="font-weight-bold">Ngày nhận phòng</div>
-                        <div>12/10/2019</div>
+                        <div>{{checkInDate}}</div>
                     </div>
                     <div class="text-center mx-3">
                         <div><i class="far fa-clock font-weight-bold"></i></div>
-                        <div>2 đêm</div>
+                        <div>{{totalDaysRent}} đêm</div>
                     </div>
                     <div class="text-left">
                         <div class="font-weight-bold">Ngày trả phòng</div>
-                        <div>14/10/2019</div>
+                        <div>{{checkOutDate}}</div>
                     </div>
                 </div>
                 <div>
                     <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <span class="font-weight-bold">2 người lớn</span> (>= 12 tuổi) 
-                            <span class="font-weight-bold">x 1.300.000 x 2 đêm</span>
-                        </div>
-                        <div>5.200.000đ</div>
+                        <div class="flex-grow-1" v-html="billAdult.text"></div>
+                        <div v-html="billAdult.price"></div>
                     </div>
                     <div class="d-flex">
-                        <div class="flex-grow-1"><span class="font-weight-bold">2 trẻ em</span> (2-11 tuổi)</div>
-                        <div>Báo giá sau</div>
+                        <div class="flex-grow-1" v-html="billChildren.text"></div>
+                        <div v-html="billChildren.price"></div>
                     </div>
                     <div class="d-flex">
-                        <div class="flex-grow-1"><span class="font-weight-bold">2 em bé</span> (<2 tuổi)</div>
-                        <div>Báo giá sau</div>
+                        <div class="flex-grow-1" v-html="billBaby.text"></div>
+                        <div v-html="billBaby.price"></div>
                     </div>
                 </div>
                 <div class="row font-weight-bold text-right my-3">
                     <div class="col-8">Giá tạm tính</div>
-                    <div class="col-4 yellow">5.200.000đ</div>
+                    <div class="col-4 yellow">{{billAdult.price}}</div>
                 </div>
             </div>
         </b-row>
