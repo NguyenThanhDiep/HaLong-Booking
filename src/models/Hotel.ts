@@ -37,13 +37,13 @@ export default class Hotel {
 
 export const StarHotel = [1, 2, 3, 4, 5]
 
-export const FreeService = {
+export const FreeService: any = {
     FreeAnSang: { code: 'FreeAnSang', name: 'Bữa sáng miễn phí' },
     Free3Bua: { code: 'Free3Bua', name: '3 bữa ăn miễn phí' },
     ThemGiuongPhu: { code: 'ThemGiuongPhu', name: 'Thêm giường phụ' }
 }
 
-export const ServiceHotel = {
+export const ServiceHotel: any = {
     HoBoi: { code: 'HoBoi', name: 'Hồ bơi' },
     Massage: { code: 'Massage', name: 'Massage/Spa'},
     Wifi: { code: 'Wifi', name: 'Wifi miễn phí' },

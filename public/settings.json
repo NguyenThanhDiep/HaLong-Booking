@@ -1,0 +1,8 @@
+{
+    "ApiHotel": {
+        "BaseUrl": "http://localhost:57223/",
+        "BaseUrlSuffix": "",
+
+        "GetAllHotels": "hotels/"
+    }
+}

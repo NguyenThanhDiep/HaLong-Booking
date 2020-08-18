@@ -2,7 +2,7 @@ interface ApiHotel {
     "BaseUrl": string;
     "BaseUrlSuffix": string;
 
-    "GetAllHotel": string;
+    "GetAllHotels": string;
 }
 
 class Environment {
@@ -34,4 +34,4 @@ const environment: Environment = loadSetting();
 environment.Version = "1.0";
 environment.ApiHotel.BaseUrl = (new URL(environment.ApiHotel.BaseUrlSuffix, GetBaseUrl(environment.ApiHotel.BaseUrl))).toString();
 
-export { environment };
+export default environment;

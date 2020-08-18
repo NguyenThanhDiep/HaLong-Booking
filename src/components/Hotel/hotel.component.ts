@@ -1,13 +1,17 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Hotel, { HotelMockData, FreeService, ServiceHotel, StarHotel, FilterCriteria } from '@/models/Hotel';
+import Hotel, { FreeService, ServiceHotel, StarHotel, FilterCriteria } from '@/models/Hotel';
 import SearchComponent from '@/components/Shared/Search/search.component.vue';
 import { Watch } from 'vue-property-decorator';
+import HotelService from '@/services/hotelService';
 
 @Component({
     components: { SearchComponent }
 })
 export default class HotelComponent extends Vue {
+    //------------ Service -------------//
+    hotelService: HotelService = new HotelService();
+
     hotelsOrigin: Array<Hotel> = [];
     hotelsFiltered: Array<Hotel> = [];
 
@@ -25,9 +29,18 @@ export default class HotelComponent extends Vue {
     sortPriceIcon: string = '';
 
     //-----Method-----//
-    mounted() {
-        this.hotelsOrigin = HotelMockData;
+    async mounted() {
+        const resAllHotels = await this.hotelService.getAllHotels();
+        this.hotelsOrigin = this.mapDataFromAPI(resAllHotels);
         this.hotelsFiltered = this.hotelsOrigin.splice(0, this.hotelsOrigin.length, ...this.hotelsOrigin);
+    }
+
+    mapDataFromAPI(data: Array<any>): Hotel[] {
+        return data.map(h => {
+            const freeServices = h.freeServices.split(',').map((s: string) => FreeService[s]);
+            const services = h.services.split(',').map((s: string) => ServiceHotel[s]);
+            return new Hotel(h.name, h.srcImg, Number(h.price), h.star, h.address, freeServices, services, h.isSale);
+        });
     }
 
     onClickSortStar() {
