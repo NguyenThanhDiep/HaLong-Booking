@@ -20,7 +20,7 @@ export default class BookingComponent extends Vue {
     note: string = '';
 
     mounted() {
-        this.bookingHotel = new Hotel('Novotel Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1300000, 1,
+        this.bookingHotel = new Hotel(1, 'Novotel Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1300000, 1,
             '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
             [FreeService.FreeAnSang],
             [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM],

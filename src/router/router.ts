@@ -16,7 +16,7 @@ const routes: Array<RouteConfig> = [
       import("../components/Hotel/hotel.component.vue")
   },
   {
-    path: "/room",
+    path: '/room/:hotelId',
     name: "Room",
     component: () =>
       import("../components/Room/room.component.vue")
@@ -35,7 +35,8 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+  },
+  { path: "*", redirect: "/" },
 ];
 
 const router = new VueRouter({

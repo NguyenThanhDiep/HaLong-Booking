@@ -3,6 +3,7 @@ interface ApiHotel {
     "BaseUrlSuffix": string;
 
     "GetAllHotels": string;
+    "GetHotelById": string;
 }
 
 class Environment {

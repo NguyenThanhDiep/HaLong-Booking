@@ -4,31 +4,42 @@ import SearchComponent from '@/components/Shared/Search/search.component.vue';
 import Hotel from '@/models/Hotel';
 import Room from '@/models/Room';
 import { Watch } from 'vue-property-decorator';
+import HotelService from '@/services/hotelService';
 
 @Component({
     components: { SearchComponent }
 })
 export default class RoomComponent extends Vue {
+    //------------ Service -------------//
+    hotelService: HotelService = new HotelService();
+
     hotel: Hotel = new Hotel();
     imgSelected: string = '';
     allImg: Array<string> = [];
     mainPropsImg: object = {};
     indexActiveImg: number = 0;
 
-    mounted() {
-        //TO DO get data from API
-        this.hotel.name = 'Novotel Hạ Long';
-        this.hotel.star = 5;
-        this.hotel.address = '160 Đường Hạ Long, Phường Bãi Cháy, Hạ Long';
-        this.hotel.srcImg = 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg';
-        const room = new Room();
-        room.name = 'Premium Deluxe Double Sea View';
-        room.srcImg = 'https://pix10.agoda.net/hotelImages/209/2092140/2092140_17031512040051555216.jpg?s=1024x768';
-        room.price = 1600000;
-        room.freeServices = ['Bữa sáng miễn phí', 'Thêm giường phụ miễn phí', 'Hồ bơi', 'Bãi tắm riêng', 'Wifi miễn phí', 'Phòng Gym'];
-        room.capacity = ['2 người lớn', 'Có thể kê thêm giường phụ'];
-        this.hotel.rooms.push(room);
-        this.hotel.rooms.push(room);
+    async mounted() {
+        const hotelId = this.$route.params.hotelId;
+        if (hotelId) {
+            const resHotel = await this.hotelService.getHotelById(hotelId);
+            if (resHotel) this.mapDataFromAPI(resHotel);
+            else {
+                //Mock Data
+                this.hotel.name = 'Novotel Hạ Long';
+                this.hotel.star = 5;
+                this.hotel.address = '160 Đường Hạ Long, Phường Bãi Cháy, Hạ Long';
+                this.hotel.srcImg = 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg';
+                const room = new Room();
+                room.name = 'Premium Deluxe Double Sea View';
+                room.srcImg = 'https://pix10.agoda.net/hotelImages/209/2092140/2092140_17031512040051555216.jpg?s=1024x768';
+                room.price = 1600000;
+                room.freeServices = ['Bữa sáng miễn phí', 'Thêm giường phụ miễn phí', 'Hồ bơi', 'Bãi tắm riêng', 'Wifi miễn phí', 'Phòng Gym'];
+                room.capacity = ['2 người lớn', 'Có thể kê thêm giường phụ'];
+                this.hotel.rooms.push(room);
+                this.hotel.rooms.push(room);
+            }
+        }
 
         this.allImg = [
             "https://r-cf.bstatic.com/images/hotel/max1024x768/195/195444614.jpg",
@@ -49,6 +60,26 @@ export default class RoomComponent extends Vue {
             class: 'm-1 mx-5'
         }
 
+    }
+
+    mapDataFromAPI(res: any) {
+        this.hotel.id = res.id;
+        this.hotel.name = res.name;
+        this.hotel.srcImg = res.srcImg;
+        this.hotel.price = Number(res.price);
+        this.hotel.star = res.star;
+        this.hotel.address = res.address;
+        this.hotel.isSale = res.isSale;
+        (res.rooms as Array<any>).forEach(r => {
+            const room = new Room();
+            room.id = r.id;
+            room.name = r.name;
+            room.srcImg = r.srcImg;
+            room.price = Number(r.price);
+            room.freeServices = (r.freeServices as string).split(',');
+            room.capacity = (r.capacity as string).split(',');
+            this.hotel.rooms.push(room);
+        })
     }
 
     onClickImg(img: string, index: number) {

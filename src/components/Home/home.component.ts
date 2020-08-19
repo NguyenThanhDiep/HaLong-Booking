@@ -23,14 +23,14 @@ export default class HomeComponent extends Vue {
     mounted() {
         //Mock Data
         const hotelData = [
-            new Hotel('Central Luxury Hạ Long', 'https://salt.tikicdn.com/ts/tmp/fe/ef/b0/53cd94836aefa2936752b446b6628cfe.jpg', 1500000),
-            new Hotel('StarCity Hạ Long Bay', 'https://pix10.agoda.net/hotelImages/297680/-1/3971b03b26a32a394c6e2a76002974ef.jpg', 1400000),
-            new Hotel('Sài Gòn Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1700000),
-            new Hotel('Grand Hạ Long', 'https://datphongflc.com/wp-content/uploads/2019/09/khach-san-flc-grand-halong-hotel-16.jpg', 1600000),
-            new Hotel('Central Luxury Hạ Long 2', 'https://salt.tikicdn.com/ts/tmp/fe/ef/b0/53cd94836aefa2936752b446b6628cfe.jpg', 1500000),
-            new Hotel('StarCity Hạ Long Bay 2', 'https://pix10.agoda.net/hotelImages/297680/-1/3971b03b26a32a394c6e2a76002974ef.jpg', 1400000),
-            new Hotel('Sài Gòn Hạ Long 2', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1700000),
-            new Hotel('Grand Hạ Long 2', 'https://datphongflc.com/wp-content/uploads/2019/09/khach-san-flc-grand-halong-hotel-16.jpg', 1600000)
+            new Hotel(1, 'Central Luxury Hạ Long', 'https://salt.tikicdn.com/ts/tmp/fe/ef/b0/53cd94836aefa2936752b446b6628cfe.jpg', 1500000),
+            new Hotel(2, 'StarCity Hạ Long Bay', 'https://pix10.agoda.net/hotelImages/297680/-1/3971b03b26a32a394c6e2a76002974ef.jpg', 1400000),
+            new Hotel(3, 'Sài Gòn Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1700000),
+            new Hotel(4, 'Grand Hạ Long', 'https://datphongflc.com/wp-content/uploads/2019/09/khach-san-flc-grand-halong-hotel-16.jpg', 1600000),
+            new Hotel(5, 'Central Luxury Hạ Long 2', 'https://salt.tikicdn.com/ts/tmp/fe/ef/b0/53cd94836aefa2936752b446b6628cfe.jpg', 1500000),
+            new Hotel(6, 'StarCity Hạ Long Bay 2', 'https://pix10.agoda.net/hotelImages/297680/-1/3971b03b26a32a394c6e2a76002974ef.jpg', 1400000),
+            new Hotel(7, 'Sài Gòn Hạ Long 2', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1700000),
+            new Hotel(8, 'Grand Hạ Long 2', 'https://datphongflc.com/wp-content/uploads/2019/09/khach-san-flc-grand-halong-hotel-16.jpg', 1600000)
         ]
         this.hotels = hotelData;
         for (let i = 0; i < this.hotels.length / 4; ++i) {

@@ -39,7 +39,7 @@ export default class HotelComponent extends Vue {
         return data.map(h => {
             const freeServices = h.freeServices.split(',').map((s: string) => FreeService[s]);
             const services = h.services.split(',').map((s: string) => ServiceHotel[s]);
-            return new Hotel(h.name, h.srcImg, Number(h.price), h.star, h.address, freeServices, services, h.isSale);
+            return new Hotel(h.id, h.name, h.srcImg, Number(h.price), h.star, h.address, freeServices, services, h.isSale);
         });
     }
 
@@ -147,7 +147,7 @@ export default class HotelComponent extends Vue {
         this.sortStarIcon = this.sortPriceIcon = '';
     }
 
-    onClickBookHotel() {
-        this.$router.push('Room');
+    onClickBookHotel(hotelId: number) {
+        this.$router.push({ name: 'Room', params: { hotelId: hotelId.toString() } });
     }
 }
