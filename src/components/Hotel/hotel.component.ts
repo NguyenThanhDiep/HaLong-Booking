@@ -16,6 +16,8 @@ export default class HotelComponent extends Vue {
     hotelsFiltered: Array<Hotel> = [];
 
     filterCriteria: FilterCriteria = new FilterCriteria();
+    firstPrice: number = 0;
+    secondPrice: number = 5000000;
     filterIsSale: boolean = false;
     filterStars: Array<any> = [];
     starHotel: Array<number> = StarHotel;
@@ -124,8 +126,21 @@ export default class HotelComponent extends Vue {
         this.onFilterHotels();
     }
 
+    get rangeFilterPrice(): number[] {
+        return [Math.min(this.firstPrice, this.secondPrice), Math.max(this.firstPrice, this.secondPrice)];
+    }
+
+    @Watch('rangeFilterPrice')
+    onFilterByPrice(val: number[]) {
+        this.filterCriteria.price = val;
+        this.onFilterHotels();
+    }
+
     onFilterHotels() {
         let result = this.hotelsOrigin;
+        if (this.filterCriteria.price.some(n => n !== 0 && n !== 5000000)) {
+            result = result.filter(h => h.price >= this.filterCriteria.price[0] && h.price <= this.filterCriteria.price[1]);
+        }
         if (this.filterCriteria.onlyIsSale) {
             result = result.filter(h => h.isSale);
         }

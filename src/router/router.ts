@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
       import("../components/Room/room.component.vue")
   },
   {
-    path: "/booking",
+    path: "/booking/:roomId",
     name: "Booking",
     component: () =>
       import("../components/Booking/booking.component.vue")

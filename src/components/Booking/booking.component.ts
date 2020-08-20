@@ -3,11 +3,15 @@ import Component from 'vue-class-component';
 import SearchComponent from '@/components/Shared/Search/search.component.vue';
 import Hotel, { FreeService, ServiceHotel } from '@/models/Hotel';
 import moment from 'moment';
+import HotelService from '@/services/hotelService';
 
 @Component({
     components: { SearchComponent }
 })
 export default class BookingComponent extends Vue {
+    //------------ Service -------------//
+    hotelService: HotelService = new HotelService();
+    
     bookingHotel: Hotel = new Hotel();
     checkInDate: string = '';
     checkOutDate: string = '';
@@ -19,13 +23,20 @@ export default class BookingComponent extends Vue {
     email: string = '';
     note: string = '';
 
-    mounted() {
-        this.bookingHotel = new Hotel(1, 'Novotel Hạ Long', 'https://q-cf.bstatic.com/images/hotel/max1280x900/688/68867405.jpg', 1300000, 1,
-            '160 Đường Hạ Long, Bãi Cháy, Hạ Long',
-            [FreeService.FreeAnSang],
-            [ServiceHotel.BaiDoXe, ServiceHotel.ChapNhanThuCung, ServiceHotel.DoAnTaiPhong, ServiceHotel.HoBoi, ServiceHotel.MayATM],
-            true
-        );
+    async mounted() {
+        const roomId = this.$route.params.roomId;
+        if (roomId) {
+            const resRoomInfo = await this.hotelService.getRoomById(roomId);
+            if (resRoomInfo) this.mapDataFromAPI(resRoomInfo);
+            else this.$router.push({ name: 'Home' });
+        }
+    }
+
+    mapDataFromAPI(res: any) {
+        const hotelInfo = res.hotel;
+        const freeHotelServices = (hotelInfo.freeServices as string).split(',').map(s => FreeService[s]);
+        const hotelServices = (hotelInfo.services as string).split(',').map(s => ServiceHotel[s]);
+        this.bookingHotel = new Hotel(hotelInfo.id, hotelInfo.name, hotelInfo.srcImg, Number(hotelInfo.price), hotelInfo.star, hotelInfo.address, freeHotelServices, hotelServices, hotelInfo.isSale);
     }
 
     onInputCheckInDate(date: Date) {

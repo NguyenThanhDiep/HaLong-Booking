@@ -4,6 +4,7 @@
         "BaseUrlSuffix": "",
 
         "GetAllHotels": "hotels/",
-        "GetHotelById": "hotels/{hotelId}/"
+        "GetHotelById": "hotels/{hotelId}/",
+        "GetRoomById": "rooms/{roomId}/"
     }
 }

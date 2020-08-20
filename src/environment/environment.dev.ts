@@ -4,6 +4,7 @@ interface ApiHotel {
 
     "GetAllHotels": string;
     "GetHotelById": string;
+    "GetRoomById": string;
 }
 
 class Environment {

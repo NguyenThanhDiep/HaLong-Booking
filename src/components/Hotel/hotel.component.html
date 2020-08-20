@@ -11,7 +11,10 @@
                         <div>0đ</div>
                         <div>5.000.000đ</div>
                     </div>
-                    <b-form-input type="range" min="0" max="5000000" step="100000"></b-form-input>
+                    <div class="filter-price-area">
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="firstPrice"></b-form-input>
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="secondPrice"></b-form-input>
+                    </div>
                     <b-form-checkbox class="black small" v-model="filterIsSale">Đang giảm giá</b-form-checkbox>
                 </div>
                 <div>
@@ -23,7 +26,6 @@
                             </b-form-checkbox>
                         </b-form-checkbox-group>
                     </b-form-group>
-                    {{filterStars}}
                 </div>
                 <div>
                     <div class="font-weight-bold">Dịch vụ miễn phí</div>
@@ -31,7 +33,6 @@
                         <b-form-checkbox-group v-model="filterFreeServices" stacked>
                             <b-form-checkbox v-for="freeService in freeServiceHotel" :key="freeService.code" :value="freeService.code">{{freeService.name}}</b-form-checkbox>
                         </b-form-checkbox-group>
-                        {{filterFreeServices}}
                     </b-form-group>
                 </div>
                 <div>
@@ -54,6 +55,9 @@
                 <div class="pointer" @click="onClickSortPrice">
                     Giá phòng 
                     <i :class="['fas', sortPriceIcon]"></i>
+                </div>
+                <div class="ml-auto font-weight-bold">
+                    {{hotelsFiltered.length}} khách sạn phù hợp
                 </div>
             </div>
             <div class="my-3">
