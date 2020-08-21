@@ -6,11 +6,15 @@ import { Prop } from 'vue-property-decorator';
 @Component({})
 export default class SearchComponent extends Vue {
     //-----Prop-----//
-    @Prop({ default: 800 }) heightImg!: number;
+    @Prop({ default: 'normal' }) typePage!: string;
 
     nameHotel: string = '';
     checkInDate: string = '';
     checkOutDate: string = '';
+
+    get heightImg(): string {
+        return this.typePage === 'home' ? '100vh' : '300px';
+    } 
 
     onSearchHotel() {
         const searchString = this.nameHotel.trim();
