@@ -1,32 +1,7 @@
-.room {
+.booking {
     color: $color-blue;
-    img {
-        width: 300px;
-        height: 200px;
-    }
-
-    @keyframes zoominoutsinglefeatured {
-        0% {
-            transform: scale(0,0);
-        }
-        100% {
-            transform: scale(1,1);
-        }
-    }
-
-    .main-img {
-        animation: zoominoutsinglefeatured 2s;
-    }
-
-    .option-img {
-        opacity: 0.5;
-        &:hover {
-            opacity: 1;
-        }
-    }
-
-    .active-img {
-        border: 3px solid $color-blue;
-        opacity: 1;
+    .title {
+        font-weight: bolder;
+        font-size: 20px;
     }
 }

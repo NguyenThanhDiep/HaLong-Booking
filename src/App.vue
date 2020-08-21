@@ -7,7 +7,11 @@
     <header>
       <div class="d-flex">
         <div class="mr-auto p-3 px-5 font-weight-boldr">
-          <h3>Halong Booking</h3>
+          <h3>
+            <router-link to="/">
+              Halong Booking
+            </router-link>
+          </h3>
         </div>
         <div class="p-3 font-weight-bold">
           Hướng dẫn du lịch

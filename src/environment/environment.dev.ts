@@ -3,6 +3,7 @@ interface ApiHotel {
     "BaseUrlSuffix": string;
 
     "GetAllHotels": string;
+    "GetHotelsByName": string;
     "GetHotelById": string;
     "GetRoomById": string;
 }

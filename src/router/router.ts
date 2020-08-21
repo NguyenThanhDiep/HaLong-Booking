@@ -10,22 +10,22 @@ const routes: Array<RouteConfig> = [
     component: require('@/components/Home/home.component.vue').default
   },
   {
-    path: "/hotel",
+    path: "/findHotel",
+    name: "FindHotel",
+    component: () =>
+      import("../components/FindHotel/findHotel.component.vue")
+  },
+  {
+    path: '/hotel/:hotelId',
     name: "Hotel",
     component: () =>
       import("../components/Hotel/hotel.component.vue")
   },
   {
-    path: '/room/:hotelId',
+    path: "/room/:roomId",
     name: "Room",
     component: () =>
       import("../components/Room/room.component.vue")
-  },
-  {
-    path: "/booking/:roomId",
-    name: "Booking",
-    component: () =>
-      import("../components/Booking/booking.component.vue")
   },
   {
     path: "/about",

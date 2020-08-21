@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import SearchComponent from '@/components/Shared/Search/search.component.vue';
-import Hotel from '@/models/Hotel';
-import Room from '@/models/Room';
-import { Watch } from 'vue-property-decorator';
+import Hotel, { FreeService, ServiceHotel } from '@/models/Hotel';
+import moment from 'moment';
 import HotelService from '@/services/hotelService';
 
 @Component({
@@ -12,77 +11,90 @@ import HotelService from '@/services/hotelService';
 export default class RoomComponent extends Vue {
     //------------ Service -------------//
     hotelService: HotelService = new HotelService();
-
-    hotel: Hotel = new Hotel();
-    imgSelected: string = '';
-    allImg: Array<string> = [];
-    mainPropsImg: object = {};
-    indexActiveImg: number = 0;
+    
+    bookingHotel: Hotel = new Hotel();
+    checkInDate: string = '';
+    checkOutDate: string = '';
+    numberAdult: number | null = null;
+    numberChildren: number | null = null;
+    numberBaby: number | null = null;
+    fullName: string = '';
+    phoneNumber: string = '';
+    email: string = '';
+    note: string = '';
 
     async mounted() {
-        const hotelId = this.$route.params.hotelId;
-        if (hotelId) {
-            const resHotel = await this.hotelService.getHotelById(hotelId);
-            if (resHotel) this.mapDataFromAPI(resHotel);
+        const roomId = this.$route.params.roomId;
+        if (roomId) {
+            const resRoomInfo = await this.hotelService.getRoomById(roomId);
+            if (resRoomInfo) this.mapDataFromAPI(resRoomInfo);
             else this.$router.push({ name: 'Home' });
         }
-
-        this.allImg = [
-            "https://r-cf.bstatic.com/images/hotel/max1024x768/195/195444614.jpg",
-            "https://r-cf.bstatic.com/images/hotel/max1024x768/192/192958857.jpg",
-            "https://ihg.scene7.com/is/image/ihg/even-hotels-eugene-5405616297-4x3",
-            "https://media-cdn.tripadvisor.com/media/photo-s/16/1a/ea/54/hotel-presidente-4s.jpg",
-            "https://www.welcome-hotels.com/site/assets/files/35059/welcome_hotel_marburg_lobby_2k.2560x1600.jpg",
-            "https://pix10.agoda.net/hotelImages/209/2092140/2092140_17031512040051555216.jpg?s=1024x768"
-        ];
-        this.imgSelected = this.allImg[0];
-        this.mainPropsImg = {
-            center: true,
-            fluidGrow: true,
-            blank: true,
-            blankColor: '#bbb',
-            width: 100,
-            height: 50,
-            class: 'm-1 mx-5'
-        }
-
     }
 
     mapDataFromAPI(res: any) {
-        this.hotel.id = res.id;
-        this.hotel.name = res.name;
-        this.hotel.srcImg = res.srcImg;
-        this.hotel.price = Number(res.price);
-        this.hotel.star = res.star;
-        this.hotel.address = res.address;
-        this.hotel.isSale = res.isSale;
-        (res.rooms as Array<any>).forEach(r => {
-            const room = new Room();
-            room.id = r.id;
-            room.name = r.name;
-            room.srcImg = r.srcImg;
-            room.price = Number(r.price);
-            room.freeServices = (r.freeServices as string).split(',');
-            room.capacity = (r.capacity as string).split(',');
-            this.hotel.rooms.push(room);
-        })
+        const hotelInfo = res.hotel;
+        const freeHotelServices = (hotelInfo.freeServices as string).split(',').map(s => FreeService[s]);
+        const hotelServices = (hotelInfo.services as string).split(',').map(s => ServiceHotel[s]);
+        this.bookingHotel = new Hotel(hotelInfo.id, hotelInfo.name, hotelInfo.srcImg, Number(hotelInfo.price), hotelInfo.star, hotelInfo.address, freeHotelServices, hotelServices, hotelInfo.isSale);
     }
 
-    onClickImg(img: string, index: number) {
-        this.imgSelected = img;
-        this.indexActiveImg = index;
+    onInputCheckInDate(date: Date) {
+        this.checkInDate = moment(date).format('D/M/YYYY');
     }
 
-    @Watch('imgSelected')
-    async onImgSelectedChange() {
-        const mainImg = document.getElementById('mainImg');
-        mainImg?.classList.add('main-img');
-        setTimeout(() => {
-            mainImg?.classList.remove('main-img');
-        }, 2000);
+    onInputCheckoutDate(date: Date) {
+        this.checkOutDate = moment(date).format('D/M/YYYY');
     }
 
-    onClickBookRoom(roomId: number) {
-        this.$router.push({ name: 'Booking', params: { roomId: roomId.toString() } });
+    get totalDaysRent() {
+        if (this.checkInDate && this.checkOutDate) {
+            return moment(this.checkOutDate, 'D-M-YYYY').diff(moment(this.checkInDate, 'D-M-YYYY'), 'days');
+        }
+        else return '';
+    }
+
+    get billAdult() {
+        if (this.numberAdult && this.bookingHotel.price && this.totalDaysRent) {
+            return {
+                text: `<span class="font-weight-bold">${this.numberAdult} người lớn</span> (>= 12 tuổi) 
+                    <span class="font-weight-bold">x ${this.bookingHotel.price} x ${this.totalDaysRent} đêm</span>`,
+                price: `${Number(this.numberAdult) * this.bookingHotel.price * Number(this.totalDaysRent)}đ`
+            }
+        }
+        else return {
+            text: '',
+            price: ''
+        }
+    }
+
+    get billChildren() {
+        if (this.numberChildren && this.totalDaysRent) {
+            return {
+                text: `<span class="font-weight-bold">${this.numberChildren} trẻ em</span> (2-11 tuổi)`,
+                price: `Báo giá sau`
+            }
+        }
+        else {
+            return {
+                text: '',
+                price: ''
+            }
+        }
+    }
+
+    get billBaby() {
+        if (this.numberBaby && this.totalDaysRent) {
+            return {
+                text: `<span class="font-weight-bold">${this.numberBaby} em bé</span> (<2 tuổi)`,
+                price: `Báo giá sau`
+            }
+        }
+        else {
+            return {
+                text: '',
+                price: ''
+            }
+        }
     }
 }

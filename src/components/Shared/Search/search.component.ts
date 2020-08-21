@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
@@ -12,7 +13,8 @@ export default class SearchComponent extends Vue {
     checkOutDate: string = '';
 
     onSearchHotel() {
-        //console.log('>>>search: ', this.nameHotel, this.checkInDate, this.checkOutDate);
-        this.$router.push('Hotel');
+        const searchString = this.nameHotel.trim();
+        if (!!searchString) this.$router.push({ name: 'FindHotel', query: { searchString: searchString } }).then(() => {}).catch(() => {});
+        else this.$router.push({ name: 'FindHotel' }).then(() => {}).catch(() => {});
     }
 }

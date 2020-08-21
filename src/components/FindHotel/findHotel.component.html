@@ -1,0 +1,102 @@
+<div class="hotel">
+    <!-- <div>
+        <SearchComponent heightImg="300"/>
+    </div> -->
+    <div class="search-area">
+        <b-img
+            src="https://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/pagePropertiesImage/ha-long-bay.jpg.jpg"
+            alt="Ha Long Background" block fuild center class="search-img" :style="{ height: 300 + 'px'}"/>
+        <div class="search-form px-4 py-3" :style="{ top: 300/8 + 'px' }">
+            <h5 class="text-left mb-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
+            <div class="d-flex justify-content-end mb-3">
+                <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn" v-model="nameHotel"></b-input>
+                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng" v-model="checkInDate"></b-form-datepicker>
+                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng" v-model="checkOutDate"></b-form-datepicker>
+                <b-button variant="primary" @click="onSearchHotel">Tìm</b-button>
+            </div>
+        </div>
+    </div>
+    <div class="row text-left">
+        <div class="col-3 p-3 pl-4">
+            <div class="panel-filter p-3">
+                <div class="mb-3">
+                    <div class="font-weight-bold">Theo mức giá</div>
+                    <div class="d-flex justify-content-between">
+                        <div>0đ</div>
+                        <div>5.000.000đ</div>
+                    </div>
+                    <div class="filter-price-area">
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="firstPrice"></b-form-input>
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="secondPrice"></b-form-input>
+                    </div>
+                    <b-form-checkbox class="black small" v-model="filterIsSale">Đang giảm giá</b-form-checkbox>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Theo tiêu chuẩn sao</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterStars" stacked>
+                            <b-form-checkbox v-for="star in starHotel" :key="star" :value="star">
+                                <i class="fas fa-star yellow" v-for="s in star"></i>
+                            </b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Dịch vụ miễn phí</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterFreeServices" stacked>
+                            <b-form-checkbox v-for="freeService in freeServiceHotel" :key="freeService.code" :value="freeService.code">{{freeService.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Các tiện ích</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filerServices" stacked>
+                            <b-form-checkbox v-for="service in serviceHotel" :key="service.code" :value="service.code">{{service.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+            </div>
+        </div>
+        <div class="col-9 text-left">
+            <div class="d-flex justify-content-start p-3">
+                <div class="font-weight-bold">Sắp xếp theo</div>
+                <div class="mx-5 pointer" @click="onClickSortStar">
+                    Tiêu chuẩn sao 
+                    <i :class="['fas', sortStarIcon]"></i>
+                </div>
+                <div class="pointer" @click="onClickSortPrice">
+                    Giá phòng 
+                    <i :class="['fas', sortPriceIcon]"></i>
+                </div>
+                <div class="ml-auto font-weight-bold">
+                    {{hotelsFiltered.length}} khách sạn phù hợp
+                </div>
+            </div>
+            <div class="my-3">
+                <b-row v-for="(hotel, index) in hotelsFiltered" :key="hotel.name" class="p-3">
+                    <b-col cols="4">
+                        <b-img :src="hotel.srcImg" fluid :alt="'Card Image ' + index"></b-img>
+                    </b-col>
+                    <b-col cols="5" class="d-flex flex-column">
+                        <div class="title">Khách sạn {{hotel.name}}</div>
+                        <div class="yellow"><i class="fas fa-star" v-for="star in hotel.star"></i></div>
+                        <div><span class="black">{{hotel.address}}</span> <b-button variant="link"><i class="fas fa-map-marker-alt"></i> Bản đồ</b-button></div>
+                        <div class="font-weight-bold">Dịch vụ và tiện ích</div>
+                        <div v-for="(service, index) in [...hotel.freeServices, ...hotel.services]" class="black" v-if="index<=4 || hotel.isShowAll">
+                            - {{service.name}}
+                        </div>
+                        <div v-if="!hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=true" class="pointer">...hiện thêm >></div>
+                        <div v-if="hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=false" class="pointer"><< thu gọn</div>
+                    </b-col>
+                    <b-col cols="3" class="d-flex flex-column">
+                        <div class="yellow font-weight-bold">{{hotel.price}}đ</div>
+                        <div>/ đêm</div>
+                        <div class="mt-auto"><b-button variant="primary" @click="onClickBookHotel(hotel.id)">Đặt khách sạn</b-button></div>
+                    </b-col>
+                </b-row>
+            </div>
+        </div>
+    </div>
+</div>

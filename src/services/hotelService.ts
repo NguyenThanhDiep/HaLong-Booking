@@ -8,6 +8,10 @@ export default class HotelService {
         return this.httpService.get<Array<any>>(environment.ApiHotel.GetAllHotels);
     }
 
+    public async getHotelsByName(searchString: string) {
+        return this.httpService.get<Array<any>>(environment.ApiHotel.GetHotelsByName.replace('{searchString}', searchString));
+    }
+
     public async getHotelById(hotelId: string) {
         return this.httpService.get<any>(environment.ApiHotel.GetHotelById.replace('{hotelId}', hotelId));
     }
