@@ -2,118 +2,186 @@
     <div class="mb-5">
         <SearchComponent />
     </div>
-    <div class="text-left p-3">
-        <b-row>
-            <div class="col-7">
-                <div class="title">Thông tin đặt phòng</div>
-                <div class="px-3">
-                    <div class="row my-3">
-                        <div class="col-6">
-                            <div class="mb-2">Ngày nhận phòng</div>
-                            <div>
-                                <b-form-datepicker placeholder="Ngày nhận phòng" 
-                                    :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
-                                    locale="vi" :value-as-date="true"
-                                    @input="onInputCheckInDate"></b-form-datepicker>
+    <form id="form-booking" class="needs-validation" novalidate>
+        <div class="text-left p-3">
+            <b-row>
+                <div class="col-7">
+                    <div class="title">Thông tin đặt phòng</div>
+                    <div class="px-3">
+                        <div class="row my-3 form-row">
+                            <div class="col-6">
+                                <div class="mb-2">Ngày nhận phòng <span class="required">*</span></div>
+                                <div>
+                                    <b-form-datepicker placeholder="Ngày nhận phòng" 
+                                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                                        locale="vi" :value-as-date="true"
+                                        @input="onInputCheckInDate" :state="validateCheckInDate"></b-form-datepicker>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">Ngày trả phòng <span class="required">*</span></div>
+                                <div>
+                                    <b-form-datepicker placeholder="Ngày trả phòng"
+                                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
+                                        locale="vi" :value-as-date="true"
+                                        @input="onInputCheckoutDate" :state="validateCheckOutDate"
+                                    ></b-form-datepicker>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="mb-2">Ngày trả phòng</div>
+                        <div class="my-3">
+                            <div class="mb-2">Số lượng người lớn <span class="required">*</span></div>
+                            <div><b-form-input v-model="numberAdult" type="number" required></b-form-input></div>
+                            <div class="invalid-feedback">
+                                Thông tin bắt buộc
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <div class="mb-2">Số lượng trẻ em</div>
+                            <div><b-form-input v-model="numberChildren" type="number"></b-form-input></div>
+                        </div>
+                        <div class="my-3">
+                            <div class="mb-2">Số lượng em bé</div>
+                            <div><b-form-input v-model="numberBaby" type="number"></b-form-input></div>
+                        </div>
+                        <div class="my-3">
+                            <div class="mb-2">Họ tên <span class="required">*</span></div>
+                            <div><b-form-input v-model="fullName" type="text" required></b-form-input></div>
+                            <div class="invalid-feedback">
+                                Thông tin bắt buộc
+                            </div>
+                        </div>
+                        <div class="row my-3 form-row">
+                            <div class="col-6">
+                                <div class="mb-2">Điện thoại <span class="required">*</span></div>
+                                <div><b-form-input v-model="phoneNumber" type="tel" required></b-form-input></div>
+                                <div class="invalid-feedback">
+                                    Thông tin bắt buộc
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-2">Email <span class="required">*</span></div>
+                                <div><b-form-input v-model="email" type="email" required></b-form-input></div>
+                                <div class="invalid-feedback">
+                                    Thông tin bắt buộc
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <div class="mb-2">Ghi chú</div>
                             <div>
-                                <b-form-datepicker placeholder="Ngày trả phòng"
-                                    :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"
-                                    locale="vi" :value-as-date="true"
-                                    @input="onInputCheckoutDate"
-                                ></b-form-datepicker>
+                                <b-form-textarea v-model="note"></b-form-textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="my-3">
-                        <div class="mb-2">Số lượng người lớn</div>
-                        <div><b-form-input v-model="numberAdult" type="number"></b-form-input></div>
-                    </div>
-                    <div class="my-3">
-                        <div class="mb-2">Số lượng trẻ em</div>
-                        <div><b-form-input v-model="numberChildren" type="number"></b-form-input></div>
-                    </div>
-                    <div class="my-3">
-                        <div class="mb-2">Số lượng em bé</div>
-                        <div><b-form-input v-model="numberBaby" type="number"></b-form-input></div>
-                    </div>
-                    <div class="my-3">
-                        <div class="mb-2">Họ tên</div>
-                        <div><b-form-input v-model="fullName" type="text"></b-form-input></div>
-                    </div>
-                    <div class="row my-3">
-                        <div class="col-6">
-                            <div class="mb-2">Điện thoại</div>
-                            <div><b-form-input v-model="phoneNumber" type="tel"></b-form-input></div>
-                        </div>
-                        <div class="col-6">
-                            <div class="mb-2">Email</div>
-                            <div><b-form-input v-model="email" type="email"></b-form-input></div>
+                </div>
+                <div class="col-5">
+                    <div class="title mb-3">Tóm tắt thông tin</div>
+                    <div class="row">
+                        <div class="col-4"><img :src="bookingHotel.srcImg" class="img-fluid w-100 rounded" /></div>
+                        <div class="col-8">
+                            <div class="font-weight-bold">{{bookingHotel.name}}</div>
+                            <div><i class="fas fa-star yellow" v-for="s in bookingHotel.star"></i></div>
+                            <div>{{bookingHotel.address}}</div>
+                            <div>
+                                <div class="font-weight-bold">Miễn phí</div>
+                                <div>
+                                    <div v-for="service in bookingHotel.allServices">- {{service.name}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="my-3">
-                        <div class="mb-2">Ghi chú</div>
-                        <div>
-                            <b-form-textarea v-model="note"></b-form-textarea>
+                    <div class="d-flex my-3">
+                        <div class="text-right ml-3">
+                            <div class="font-weight-bold">Ngày nhận phòng</div>
+                            <div>{{checkInDate}}</div>
+                        </div>
+                        <div class="text-center mx-3">
+                            <div><i class="far fa-clock font-weight-bold"></i></div>
+                            <div>{{totalDaysRent}} đêm</div>
+                        </div>
+                        <div class="text-left">
+                            <div class="font-weight-bold">Ngày trả phòng</div>
+                            <div>{{checkOutDate}}</div>
                         </div>
                     </div>
+                    <div>
+                        <div class="d-flex">
+                            <div class="flex-grow-1" v-html="billAdult.text"></div>
+                            <div v-html="billAdult.price"></div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-grow-1" v-html="billChildren.text"></div>
+                            <div v-html="billChildren.price"></div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-grow-1" v-html="billBaby.text"></div>
+                            <div v-html="billBaby.price"></div>
+                        </div>
+                    </div>
+                    <div class="row font-weight-bold text-right my-3">
+                        <div class="col-8">Giá tạm tính</div>
+                        <div class="col-4 yellow">{{billAdult.price}}</div>
+                    </div>
+                </div>
+            </b-row>
+        </div>
+        <div class="mb-5">
+            <b-button variant="primary" @click="onConfirmBook">Đặt phòng</b-button>
+        </div>
+    </form>
+    <b-modal v-model="isShowConfirmPopup" title="Xác nhận thông tin đặt phòng" scrollable
+        footer-bg-variant="light" header-class="header-model">
+        <template v-slot:default="{ hide }">
+            <div>
+                <div class="font-weight-bold">
+                    Họ và tên khách hàng: {{fullName}}
+                </div>
+                <div class="font-weight-bold">
+                    Điện thoại: {{phoneNumber}}
+                </div>
+                <div class="font-weight-bold">
+                    Email: {{email}}
+                </div>
+                <div class="font-weight-bold">
+                    Ngày nhận phòng: {{checkInDate}}
+                </div>
+                <div class="font-weight-bold">
+                    Ngày trả phòng: {{checkOutDate}}
+                </div>
+                <div class="font-weight-bold">
+                    Số lượng người lớn: {{numberAdult}}
+                </div>
+                <div class="font-weight-bold" v-if="!!numberChildren">
+                    Số lượng trẻ em: {{numberChildren}}
+                </div>
+                <div class="font-weight-bold" v-if="!!numberBaby">
+                    Số lượng em bé: {{numberBaby}}
+                </div>
+                <div class="font-weight-bold" v-if="!!note">
+                    Note: {{note}}
+                </div>
+                <div class="font-weight-bold">
+                    Tên khách sạn: {{bookingHotel.name}}
+                </div>
+                <div class="font-weight-bold">
+                    Giá tạm tính: {{billAdult.price}}
                 </div>
             </div>
-            <div class="col-5">
-                <div class="title mb-3">Tóm tắt thông tin</div>
-                <div class="row">
-                    <div class="col-4"><img :src="bookingHotel.srcImg" class="img-fluid w-100 rounded" /></div>
-                    <div class="col-8">
-                        <div class="font-weight-bold">{{bookingHotel.name}}</div>
-                        <div><i class="fas fa-star yellow" v-for="s in bookingHotel.star"></i></div>
-                        <div>{{bookingHotel.address}}</div>
-                        <div>
-                            <div class="font-weight-bold">Miễn phí</div>
-                            <div>
-                                <div v-for="service in bookingHotel.allServices">- {{service.name}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex my-3">
-                    <div class="text-right ml-3">
-                        <div class="font-weight-bold">Ngày nhận phòng</div>
-                        <div>{{checkInDate}}</div>
-                    </div>
-                    <div class="text-center mx-3">
-                        <div><i class="far fa-clock font-weight-bold"></i></div>
-                        <div>{{totalDaysRent}} đêm</div>
-                    </div>
-                    <div class="text-left">
-                        <div class="font-weight-bold">Ngày trả phòng</div>
-                        <div>{{checkOutDate}}</div>
-                    </div>
+        </template>
+        <template v-slot:modal-footer="{ ok, cancel, hide }">
+            <div class="d-flex justify-content-center">
+                <div>
+                    <b-button size="sm" variant="primary" @click="onBookRoom">
+                        Đặt phòng
+                    </b-button>
                 </div>
                 <div>
-                    <div class="d-flex">
-                        <div class="flex-grow-1" v-html="billAdult.text"></div>
-                        <div v-html="billAdult.price"></div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-grow-1" v-html="billChildren.text"></div>
-                        <div v-html="billChildren.price"></div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="flex-grow-1" v-html="billBaby.text"></div>
-                        <div v-html="billBaby.price"></div>
-                    </div>
-                </div>
-                <div class="row font-weight-bold text-right my-3">
-                    <div class="col-8">Giá tạm tính</div>
-                    <div class="col-4 yellow">{{billAdult.price}}</div>
+                    <b-button size="sm" variant="danger" @click="cancel()">
+                        Hủy
+                    </b-button>
                 </div>
             </div>
-        </b-row>
-    </div>
-    <div class="mb-5">
-        <b-button variant="primary">Đặt phòng</b-button>
-    </div>
+        </template>
+    </b-modal>
 </div>

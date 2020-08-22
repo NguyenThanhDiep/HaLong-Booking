@@ -6,8 +6,10 @@
         <h5>Các khách sạn nổi bật</h5>
         <div>
             <b-card-group deck v-for="(array, indexArr) in hotelsFormat" :key="indexArr">
-                <b-card no-body v-for="(hotel, index) in array" :key="hotel.name" class="m-2">
-                    <b-card-img-lazy :src="hotel.srcImg" :alt="'Hotel' + index" height="250"></b-card-img-lazy>
+                <b-card no-body v-for="(hotel, index) in array" :key="hotel.name" class="m-2" @click="onClickHotelImg(hotel.id)">
+                    <div class="card-hotel">
+                        <b-card-img-lazy :src="hotel.srcImg" :alt="'Hotel' + index" height="250"></b-card-img-lazy>
+                    </div>
                     <b-card-text class="pt-3">
                         <h6>{{hotel.name}}</h6>
                         <div>{{hotel.price}} đ</div>

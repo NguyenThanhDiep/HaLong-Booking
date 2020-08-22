@@ -14,7 +14,9 @@ export default class RoomComponent extends Vue {
     
     bookingHotel: Hotel = new Hotel();
     checkInDate: string = '';
+    checkInValue: Date | null = null; 
     checkOutDate: string = '';
+    checkOutValue: Date | null = null;
     numberAdult: number | null = null;
     numberChildren: number | null = null;
     numberBaby: number | null = null;
@@ -22,6 +24,9 @@ export default class RoomComponent extends Vue {
     phoneNumber: string = '';
     email: string = '';
     note: string = '';
+
+    hasValidate: boolean = false;
+    isShowConfirmPopup: boolean = false;
 
     async mounted() {
         const roomId = this.$route.params.roomId;
@@ -41,10 +46,12 @@ export default class RoomComponent extends Vue {
 
     onInputCheckInDate(date: Date) {
         this.checkInDate = moment(date).format('D/M/YYYY');
+        this.checkInValue = date;
     }
 
     onInputCheckoutDate(date: Date) {
         this.checkOutDate = moment(date).format('D/M/YYYY');
+        this.checkOutValue = date;
     }
 
     get totalDaysRent() {
@@ -96,5 +103,36 @@ export default class RoomComponent extends Vue {
                 price: ''
             }
         }
+    }
+
+    get validateCheckInDate(): boolean | null {
+        if (!this.hasValidate) return null;
+        return !!this.checkInDate && moment(this.checkInValue).isSameOrAfter(moment()) && moment(this.checkInValue).isBefore(this.checkOutValue);
+    }
+
+    get validateCheckOutDate(): boolean | null {
+        if (!this.hasValidate) return null;
+        return !!this.checkOutDate && moment(this.checkInValue).isSameOrAfter(moment()) && moment(this.checkInValue).isBefore(this.checkOutValue);
+    }
+
+    onConfirmBook(event: Event) {
+        this.hasValidate = true;
+        const form = document.getElementById('form-booking') as any;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+            form.classList.add('was-validated');
+        }
+        else {
+            this.isShowConfirmPopup = true;
+        }
+    }
+
+    onBookRoom() {
+        this.isShowConfirmPopup = false;
+        this.$bvToast.toast('Bạn đã dặt phòng thành công', {
+            title: 'Success',
+            variant: 'success'
+        });
     }
 }

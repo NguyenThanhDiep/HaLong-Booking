@@ -1,7 +1,11 @@
-.booking {
+.booking ::v-deep {
     color: $color-blue;
     .title {
         font-weight: bolder;
         font-size: 20px;
+    }
+    .header-model {
+        display: block;
+        text-align: center !important;
     }
 }

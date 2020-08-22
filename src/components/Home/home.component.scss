@@ -25,4 +25,14 @@
     .card {
         width: 310px;
     }
+    .card-hotel {
+        cursor: pointer;
+        overflow: hidden;
+        img {
+            transition: transform .5s ease;
+        }
+        img:hover {
+            transform: scale(1.5);
+        }
+    }
 }
