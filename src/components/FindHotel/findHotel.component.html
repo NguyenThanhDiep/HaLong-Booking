@@ -1,7 +1,4 @@
 <div class="hotel">
-    <!-- <div>
-        <SearchComponent heightImg="300"/>
-    </div> -->
     <div class="search-area">
         <b-img
             src="https://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/pagePropertiesImage/ha-long-bay.jpg.jpg"
@@ -22,8 +19,8 @@
                 <div class="mb-3">
                     <div class="font-weight-bold">Theo mức giá</div>
                     <div class="d-flex justify-content-between">
-                        <div>0đ</div>
-                        <div>5.000.000đ</div>
+                        <div>{{minPrice}}đ</div>
+                        <div>{{maxPrice}}đ</div>
                     </div>
                     <div class="filter-price-area">
                         <b-form-input type="range" min="0" max="5000000" step="100000" v-model="firstPrice"></b-form-input>

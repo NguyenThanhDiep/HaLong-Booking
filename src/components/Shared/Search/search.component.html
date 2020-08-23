@@ -4,7 +4,7 @@
         alt="Ha Long Background" block fuild center class="search-img" :style="{ height: heightImg}"/>
     <div class="search-form px-4 py-3" :style="{ top: typePage === 'home' ? '100px' : '45px' }">
         <h5 class="text-left mb-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
-        <div class="d-flex justify-content-end mb-3">
+        <div class="d-flex .flex-sm-wrap justify-content-end mb-3">
             <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn" v-model="nameHotel"></b-input>
             <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng" v-model="checkInDate"></b-form-datepicker>
             <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng" v-model="checkOutDate"></b-form-datepicker>

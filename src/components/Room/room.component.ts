@@ -115,6 +115,20 @@ export default class RoomComponent extends Vue {
         return !!this.checkOutDate && moment(this.checkInValue).isSameOrAfter(moment()) && moment(this.checkInValue).isBefore(this.checkOutValue);
     }
 
+    get wrongCheckInDateInfo(): string {
+        if (!this.checkInDate) return 'Bạn chưa nhập ngày nhận phòng';
+        if (moment(this.checkInValue).isBefore(moment())) return 'Ngày nhận phòng phải bằng hoặc sau ngày hôm nay';
+        if (moment(this.checkInValue).isSameOrAfter(this.checkOutValue)) return 'Ngày nhận phòng phải trước ngày trả phòng';
+        return '';
+    }
+
+    get wrongCheckOutDateInfo(): string {
+        if (!this.checkOutDate) return 'Bạn chưa nhập ngày trả phòng';
+        if (moment(this.checkOutValue).isSameOrBefore(moment())) return 'Ngày trả phòng phải sau ngày hôm nay';
+        if (moment(this.checkOutValue).isSameOrBefore(this.checkInValue)) return 'Ngày trả phòng phải sau ngày nhận phòng';
+        return '';
+    }
+
     onConfirmBook(event: Event) {
         this.hasValidate = true;
         const form = document.getElementById('form-booking') as any;

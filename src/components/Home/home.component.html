@@ -8,7 +8,7 @@
             <b-card-group deck v-for="(array, indexArr) in hotelsFormat" :key="indexArr">
                 <b-card no-body v-for="(hotel, index) in array" :key="hotel.name" class="m-2" @click="onClickHotelImg(hotel.id)">
                     <div class="card-hotel">
-                        <b-card-img-lazy :src="hotel.srcImg" :alt="'Hotel' + index" height="250"></b-card-img-lazy>
+                        <b-card-img-lazy :src="hotel.srcImg" :alt="'Hotel' + index"></b-card-img-lazy>
                     </div>
                     <b-card-text class="pt-3">
                         <h6>{{hotel.name}}</h6>
@@ -23,7 +23,9 @@
         <div>
             <b-card-group deck v-for="(array, indexArr) in scenesFormat" :key="indexArr">
                 <b-card no-body v-for="(scene, index) in array" :key="scene.name" class="m-2">
-                    <b-card-img-lazy :src="scene.srcImg" :alt="'Scene' + index" height="250"></b-card-img-lazy>
+                    <div class="card-hotel">
+                        <b-card-img-lazy :src="scene.srcImg" :alt="'Scene' + index"></b-card-img-lazy>
+                    </div>
                     <b-card-text class="pt-3">
                         <h6>{{scene.name}}</h6>
                     </b-card-text>
@@ -36,7 +38,9 @@
         <div>
             <b-card-group deck v-for="(array, indexArr) in dishesFormat" :key="indexArr">
                 <b-card no-body v-for="(dish, index) in array" :key="dish.name" class="m-2">
-                    <b-card-img-lazy :src="dish.srcImg" :alt="'Dish' + index" height="250"></b-card-img-lazy>
+                    <div class="card-hotel">
+                        <b-card-img-lazy :src="dish.srcImg" :alt="'Dish' + index"></b-card-img-lazy>
+                    </div>
                     <b-card-text class="pt-3">
                         <h6>{{dish.name}}</h6>
                     </b-card-text>

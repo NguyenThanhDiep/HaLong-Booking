@@ -4,8 +4,8 @@
     </div>
     <form id="form-booking" class="needs-validation" novalidate>
         <div class="text-left p-3">
-            <b-row>
-                <div class="col-7">
+            <div class="row">
+                <div class="col-md-7">
                     <div class="title">Thông tin đặt phòng</div>
                     <div class="px-3">
                         <div class="row my-3 form-row">
@@ -17,6 +17,9 @@
                                         locale="vi" :value-as-date="true"
                                         @input="onInputCheckInDate" :state="validateCheckInDate"></b-form-datepicker>
                                 </div>
+                                <div v-show="hasValidate && !validateCheckInDate" class="required font-italic">
+                                    {{wrongCheckInDateInfo}}
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-2">Ngày trả phòng <span class="required">*</span></div>
@@ -26,6 +29,9 @@
                                         locale="vi" :value-as-date="true"
                                         @input="onInputCheckoutDate" :state="validateCheckOutDate"
                                     ></b-form-datepicker>
+                                </div>
+                                <div v-show="hasValidate && !validateCheckOutDate" class="required font-italic">
+                                    {{wrongCheckOutDateInfo}}
                                 </div>
                             </div>
                         </div>
@@ -75,7 +81,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-md-5">
                     <div class="title mb-3">Tóm tắt thông tin</div>
                     <div class="row">
                         <div class="col-4"><img :src="bookingHotel.srcImg" class="img-fluid w-100 rounded" /></div>
@@ -124,7 +130,7 @@
                         <div class="col-4 yellow">{{billAdult.price}}</div>
                     </div>
                 </div>
-            </b-row>
+            </div>
         </div>
         <div class="mb-5">
             <b-button variant="primary" @click="onConfirmBook">Đặt phòng</b-button>

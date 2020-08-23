@@ -27,6 +27,7 @@
     }
     .card-hotel {
         cursor: pointer;
+        max-height: 250px;
         overflow: hidden;
         img {
             transition: transform .5s ease;

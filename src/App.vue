@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link>
     </div> -->
     <header>
-      <div class="d-flex">
+      <div class="d-flex flex-wrap">
         <div class="mr-auto p-3 px-5 font-weight-boldr">
           <h3>
             <router-link to="/">
@@ -17,16 +17,16 @@
           Hướng dẫn du lịch
         </div>
         <div class="p-3">
-          <i class="fas fa-phone-alt"></i> (849) 6348 9262
+          <a href="tel:84963489262"><i class="fas fa-phone-alt"></i> (849) 6348 9262</a>
         </div>
         <div class="p-3">
-          <i class="fas fa-envelope"></i> contact@halongbooking.com
+          <a href="mailto:contact@halongbooking.com"><i class="fas fa-envelope"></i> contact@halongbooking.com</a>
         </div>
       </div>
     </header>
     <router-view />
     <footer>
-      <div class="d-flex p-3">
+      <div class="d-flex flex-wrap p-3">
         <div class="mr-auto">
           <h3 class="font-weight-bold">
             Halong Booking
@@ -47,9 +47,19 @@
             Liên hệ
           </h5>
           <div class="mb-1">
-            <i class="fas fa-phone-alt"></i> (849) 6348 9262
+            <a
+              href="tel:84963489262"
+              class="white"
+            ><i class="fas fa-phone-alt"></i> (849) 6348 9262
+            </a>
           </div>
-          <div><i class="fas fa-envelope"></i> contact@halongbooking.com</div>
+          <div>
+            <a 
+              href="mailto:contact@halongbooking.com" 
+              class="white"
+            ><i class="fas fa-envelope"></i> contact@halongbooking.com
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Hotel, { FreeService, ServiceHotel, StarHotel, FilterCriteria } from '@/models/Hotel';
@@ -141,6 +142,14 @@ export default class FindHotelComponent extends Vue {
         return [Math.min(this.firstPrice, this.secondPrice), Math.max(this.firstPrice, this.secondPrice)];
     }
 
+    get minPrice(): number {
+        return Math.min(this.firstPrice, this.secondPrice);
+    }
+
+    get maxPrice(): number {
+        return Math.max(this.firstPrice, this.secondPrice);
+    }
+
     @Watch('rangeFilterPrice')
     onFilterByPrice(val: number[]) {
         this.filterCriteria.price = val;
@@ -182,8 +191,12 @@ export default class FindHotelComponent extends Vue {
         let resAllHotels = [];
         if (!!searchString) {
             resAllHotels = await this.hotelService.getHotelsByName(searchString);
+            this.$router.push({ name: 'FindHotel', query: { searchString: searchString } }).then(() => { }).catch(() => { });
         }
-        else resAllHotels = await this.hotelService.getAllHotels();
+        else {
+            resAllHotels = await this.hotelService.getAllHotels();
+            this.$router.push({ name: 'FindHotel' }).then(() => {}).catch(() => {});
+        }
         this.hotelsOrigin = this.mapDataFromAPI(resAllHotels);
         this.hotelsFiltered = this.hotelsOrigin.splice(0, this.hotelsOrigin.length, ...this.hotelsOrigin);
     }
