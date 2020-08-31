@@ -114,7 +114,7 @@
                     <div>
                         <div class="d-flex">
                             <div class="flex-grow-1" v-html="billAdult.text"></div>
-                            <div v-html="billAdult.price"></div>
+                            <div v-if="!!billAdult.price">{{billAdult.price | number-masked}}đ</div>
                         </div>
                         <div class="d-flex">
                             <div class="flex-grow-1" v-html="billChildren.text"></div>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="row font-weight-bold text-right my-3">
                         <div class="col-8">Giá tạm tính</div>
-                        <div class="col-4 yellow">{{billAdult.price}}</div>
+                        <div v-if="!!billAdult.price" class="col-4 orange">{{billAdult.price | number-masked}}đ</div>
                     </div>
                 </div>
             </div>
@@ -136,58 +136,70 @@
             <b-button variant="primary" @click="onConfirmBook">Đặt phòng</b-button>
         </div>
     </form>
-    <b-modal v-model="isShowConfirmPopup" title="Xác nhận thông tin đặt phòng" scrollable
-        footer-bg-variant="light" header-class="header-model">
-        <template v-slot:default="{ hide }">
+    <b-modal v-model="isShowConfirmPopup" scrollable hide-footer hide-header>
+        <div>
+            <div class="mb-3 font-weight-bold large orange text-center header-pannel">
+                Xác nhận thông tin đặt phòng
+                <div class="close-icon" @click="isShowConfirmPopup = false"><i class="fas fa-times"></i></div>
+            </div>
             <div>
-                <div class="font-weight-bold">
-                    Họ và tên khách hàng: {{fullName}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Họ và tên khách hàng:</div>
+                    <div>{{fullName}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Điện thoại: {{phoneNumber}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Điện thoại:</div>
+                    <div>{{phoneNumber}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Email: {{email}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Email:</div>
+                    <div>{{email}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Ngày nhận phòng: {{checkInDate}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Ngày nhận phòng:</div>
+                    <div>{{checkInDate}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Ngày trả phòng: {{checkOutDate}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Ngày trả phòng:</div>
+                    <div>{{checkOutDate}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Số lượng người lớn: {{numberAdult}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Số lượng người lớn:</div>
+                    <div>{{numberAdult}}</div>
                 </div>
-                <div class="font-weight-bold" v-if="!!numberChildren">
-                    Số lượng trẻ em: {{numberChildren}}
+                <div v-if="!!numberChildren" class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Số lượng trẻ em:</div>
+                    <div>{{numberChildren}}</div>
                 </div>
-                <div class="font-weight-bold" v-if="!!numberBaby">
-                    Số lượng em bé: {{numberBaby}}
+                <div v-if="!!numberBaby" class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Số lượng em bé:</div>
+                    <div>{{numberBaby}}</div>
                 </div>
-                <div class="font-weight-bold" v-if="!!note">
-                    Note: {{note}}
+                <div v-if="!!note" class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Note:</div>
+                    <div>{{note}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Tên khách sạn: {{bookingHotel.name}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Tên khách sạn:</div>
+                    <div>{{bookingHotel.name}}</div>
                 </div>
-                <div class="font-weight-bold">
-                    Giá tạm tính: {{billAdult.price}}
+                <div class="d-flex">
+                    <div class="font-weight-bold flex-grow-1">Giá tạm tính:</div>
+                    <div>{{billAdult.price | number-masked}}đ</div>
                 </div>
             </div>
-        </template>
-        <template v-slot:modal-footer="{ ok, cancel, hide }">
-            <div class="d-flex justify-content-center">
-                <div>
-                    <b-button size="sm" variant="primary" @click="onBookRoom">
+            <div class="d-flex justify-content-center mt-3">
+                <div class="mx-1">
+                    <b-button variant="primary" @click="onBookRoom">
                         Đặt phòng
                     </b-button>
                 </div>
-                <div>
-                    <b-button size="sm" variant="danger" @click="cancel()">
+                <div class="mx-1">
+                    <b-button variant="danger" @click="isShowConfirmPopup = false">
                         Hủy
                     </b-button>
                 </div>
             </div>
-        </template>
+        </div>
     </b-modal>
 </div>

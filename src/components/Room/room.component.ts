@@ -66,7 +66,7 @@ export default class RoomComponent extends Vue {
             return {
                 text: `<span class="font-weight-bold">${this.numberAdult} người lớn</span> (>= 12 tuổi) 
                     <span class="font-weight-bold">x ${this.bookingHotel.price} x ${this.totalDaysRent} đêm</span>`,
-                price: `${Number(this.numberAdult) * this.bookingHotel.price * Number(this.totalDaysRent)}đ`
+                price: Number(this.numberAdult) * this.bookingHotel.price * Number(this.totalDaysRent)
             }
         }
         else return {
@@ -132,7 +132,7 @@ export default class RoomComponent extends Vue {
     onConfirmBook(event: Event) {
         this.hasValidate = true;
         const form = document.getElementById('form-booking') as any;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false || this.validateCheckInDate === false || this.validateCheckOutDate === false) {
             event.preventDefault();
             event.stopPropagation();
             form.classList.add('was-validated');

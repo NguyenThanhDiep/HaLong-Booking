@@ -5,11 +5,30 @@
             alt="Ha Long Background" block fuild center class="search-img" :style="{ height: 300 + 'px'}"/>
         <div class="search-form px-4 py-3" :style="{ top: 300/8 + 'px' }">
             <h5 class="text-left mb-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
-            <div class="d-flex justify-content-end mb-3">
-                <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn" v-model="nameHotel"></b-input>
-                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng" v-model="checkInDate"></b-form-datepicker>
-                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng" v-model="checkOutDate"></b-form-datepicker>
-                <b-button variant="primary" @click="onSearchHotel">Tìm</b-button>
+            <div class="row mb-3">
+                <div class="col-lg-5 col-sm-12">
+                    <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn"
+                        v-model="nameHotel"></b-input>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng"
+                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
+                        :value-as-date="true" v-model="checkInDate" :state="validateCheckInDate"></b-form-datepicker>
+                    <div v-show="validateCheckInDate===false" class="required font-italic">
+                        {{wrongCheckInDateInfo}}
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng"
+                        :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
+                        :value-as-date="true" v-model="checkOutDate" :state="validateCheckOutDate"></b-form-datepicker>
+                    <div v-show="validateCheckOutDate===false" class="required font-italic">
+                        {{wrongCheckOutDateInfo}}
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-12">
+                    <b-button :disabled="isDisableSearchButton" variant="primary" @click="onSearchHotel">Tìm</b-button>
+                </div>
             </div>
         </div>
     </div>
@@ -19,8 +38,8 @@
                 <div class="mb-3">
                     <div class="font-weight-bold">Theo mức giá</div>
                     <div class="d-flex justify-content-between">
-                        <div>{{minPrice}}đ</div>
-                        <div>{{maxPrice}}đ</div>
+                        <div>{{minPrice | number-masked}}đ</div>
+                        <div>{{maxPrice | number-masked}}đ</div>
                     </div>
                     <div class="filter-price-area">
                         <b-form-input type="range" min="0" max="5000000" step="100000" v-model="firstPrice"></b-form-input>
@@ -88,7 +107,7 @@
                         <div v-if="hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=false" class="pointer"><< thu gọn</div>
                     </b-col>
                     <b-col cols="3" class="d-flex flex-column">
-                        <div class="yellow font-weight-bold">{{hotel.price}}đ</div>
+                        <div class="yellow font-weight-bold">{{hotel.price | number-masked}}đ</div>
                         <div>/ đêm</div>
                         <div class="mt-auto"><b-button variant="primary" @click="onClickBookHotel(hotel.id)">Đặt khách sạn</b-button></div>
                     </b-col>

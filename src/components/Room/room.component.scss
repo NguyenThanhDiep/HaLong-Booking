@@ -4,8 +4,15 @@
         font-weight: bolder;
         font-size: 20px;
     }
-    .header-model {
-        display: block;
-        text-align: center !important;
+}
+
+.header-pannel {
+    position: relative;
+    .close-icon {
+        position: absolute;
+        right: 0;
+        top: -10px;
+        color: $color-black;
+        cursor: pointer;
     }
 }
