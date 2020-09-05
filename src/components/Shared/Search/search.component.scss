@@ -1,4 +1,4 @@
-.search-area {
+.search-area ::v-deep {
     z-index: 1;
     color: $color-blue;
     position: relative;
@@ -15,5 +15,9 @@
         width: 70%;
         background-color: $color-white;
         left: 15%;
+    }
+    label.text-wrap {
+        white-space: nowrap !important;
+        overflow: hidden !important;
     }
 }

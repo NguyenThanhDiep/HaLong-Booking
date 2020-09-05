@@ -3,30 +3,30 @@
         src="https://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/pagePropertiesImage/ha-long-bay.jpg.jpg"
         alt="Ha Long Background" block fuild center class="search-img" :style="{ height: heightImg}" />
     <div class="search-form px-4 py-3" :style="{ top: typePage === 'home' ? '100px' : '45px' }">
-        <h5 class="text-left mb-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
-        <div class="row mb-3">
-            <div class="col-lg-5 col-sm-12">
-                <b-input id="inline-form-input-name" class="mb-2 mr-sm-2 mb-sm-0" placeholder="Tên khách sạn"
+        <h5 class="text-left mb-3 mx-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
+        <div class="row mb-3 mx-3">
+            <div class="col-lg-4 col-md-12 pl-0">
+                <b-input id="inline-form-input-name" class="mb-2 mr-md-2 mb-md-0" placeholder="Tên khách sạn"
                     v-model="nameHotel"></b-input>
             </div>
-            <div class="col-lg-3 col-sm-12">
-                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Nhận phòng"
+            <div class="col-lg-3 col-md-12 mt-lg-0 pl-md-0 mt-md-3">
+                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0 overflow-hidden" placeholder="Nhận phòng"
                     :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
                     :value-as-date="true" v-model="checkInDate" :state="validateCheckInDate"></b-form-datepicker>
                 <div v-show="validateCheckInDate===false" class="required font-italic">
                     {{wrongCheckInDateInfo}}
                 </div>
             </div>
-            <div class="col-lg-3 col-sm-12">
-                <b-form-datepicker class="mb-2 mr-sm-2 mb-sm-0" placeholder="Trả phòng"
+            <div class="col-lg-3 col-md-12 mt-lg-0 pl-md-0 mt-md-3">
+                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0 overflow-hidden" placeholder="Trả phòng"
                     :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
                     :value-as-date="true" v-model="checkOutDate" :state="validateCheckOutDate"></b-form-datepicker>
                 <div v-show="validateCheckOutDate===false" class="required font-italic">
                     {{wrongCheckOutDateInfo}}
                 </div>
             </div>
-            <div class="col-lg-1 col-sm-12">
-                <b-button :disabled="isDisableSearchButton" variant="primary" @click="onSearchHotel">Tìm</b-button>
+            <div class="col-lg-2 col-md-12 mt-md-3 mt-lg-0 pl-md-0">
+                <b-button class="w-lg-100 px-sm-5" :disabled="isDisableSearchButton" variant="primary" @click="onSearchHotel">Tìm</b-button>
             </div>
         </div>
     </div>

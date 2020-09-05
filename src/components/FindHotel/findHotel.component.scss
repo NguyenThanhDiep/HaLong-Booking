@@ -1,4 +1,4 @@
-.hotel {
+.hotel ::v-deep {
     color: $color-blue;
     font-size: 16px;
     .title {
@@ -68,6 +68,11 @@
             width: 70%;
             background-color: $color-white;
             left: 15%;
+            top: 37.5px;
+        }
+        label.text-wrap {
+            white-space: nowrap !important;
+            overflow: hidden !important;
         }
     }
 }
