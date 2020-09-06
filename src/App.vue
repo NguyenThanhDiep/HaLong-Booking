@@ -6,7 +6,7 @@
     </div> -->
     <header>
       <div class="d-flex flex-wrap">
-        <div class="mr-auto p-3 px-5 font-weight-boldr">
+        <div class="mr-auto p-3 px-5">
           <h3>
             <router-link to="/">
               Halong Booking
@@ -72,6 +72,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #0000cc;
 }
 </style>
