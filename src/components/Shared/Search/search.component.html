@@ -2,7 +2,7 @@
     <b-img
         src="https://static.asiawebdirect.com/m/bangkok/portals/vietnam/homepage/ha-long-bay/pagePropertiesImage/ha-long-bay.jpg.jpg"
         alt="Ha Long Background" block fuild center class="search-img" :style="{ height: heightImg}" />
-    <div class="search-form px-4 py-3" :style="{ top: typePage === 'home' ? '100px' : '45px' }">
+    <div class="search-form px-4 py-3" :style="{ top: typePage === 'home' ? '70px' : '45px' }">
         <h5 class="text-left mb-3 mx-3">Trải nghiệm kì nghỉ tuyệt vời</h5>
         <div class="row mb-3 mx-3">
             <div class="col-lg-4 col-md-12 pl-0">
@@ -10,7 +10,7 @@
                     v-model="nameHotel"></b-input>
             </div>
             <div class="col-lg-3 col-md-12 mt-lg-0 pl-md-0 mt-md-3">
-                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0 overflow-hidden" placeholder="Nhận phòng"
+                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0" placeholder="Nhận phòng"
                     :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
                     :value-as-date="true" v-model="checkInDate" :state="validateCheckInDate"></b-form-datepicker>
                 <div v-show="validateCheckInDate===false" class="required font-italic">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-12 mt-lg-0 pl-md-0 mt-md-3">
-                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0 overflow-hidden" placeholder="Trả phòng"
+                <b-form-datepicker class="mb-2 mr-md-2 mb-md-0" placeholder="Trả phòng"
                     :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }" locale="vi"
                     :value-as-date="true" v-model="checkOutDate" :state="validateCheckOutDate"></b-form-datepicker>
                 <div v-show="validateCheckOutDate===false" class="required font-italic">

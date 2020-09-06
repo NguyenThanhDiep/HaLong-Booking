@@ -36,7 +36,7 @@ export default class HomeComponent extends Vue {
             new Scene('Vịnh Lan Hạ', 'https://thegioidulich.com/upload/viet-nam/hai-phong/vinh-lan-ha-thien-duong-bo-quen-01.jpg'),
             new Scene('Đảo Soi Sim', 'https://bloganchoi.com/wp-content/uploads/2017/08/dao-soi-sim-hl-1.jpg'),
             new Scene('Đảo Tuần Châu', 'https://previews.123rf.com/images/freeartist/freeartist1712/freeartist171200055/91120197-beautiful-beach-of-mauritius-island-view-from-the-azure-sea-and-palm-tree-.jpg'),
-            new Scene('Vịnh Duy Triều', 'https://i.shgcdn.com/5fcdf0de-242a-49f3-a009-4cbd75b21659/-/format/auto/-/preview/3000x3000/-/quality/lighter/'),
+            new Scene('Vịnh Duy Triều', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTIxAjMbQOmLHMBlVk1_ftnQ5xEPWSlkOhLNA&usqp=CAU'),
             new Scene('Hòn Trân Châu', 'https://unscriptedadventures.files.wordpress.com/2016/05/img_2451.jpg'),
             new Scene('Đảo Phùng Hưng', 'https://www.vietfuntravel.com.vn/image/data/Blog/so-tay/du-lich-ha-long-mua-nao-dep-nhat/du-lich-ha-long-mua-nao-dep-nhat-h1.jpg'),
             new Scene('Hòn Đôi', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTIxAjMbQOmLHMBlVk1_ftnQ5xEPWSlkOhLNA&usqp=CAU')
