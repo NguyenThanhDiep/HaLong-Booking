@@ -5,22 +5,24 @@
       <router-link to="/about">About</router-link>
     </div> -->
     <header>
-      <div class="d-flex flex-wrap">
-        <div class="mr-auto p-3 px-5">
+      <div class="row align-items-center">
+        <div class="col-6 p-3 px-5 text-left">
           <h3>
             <router-link to="/">
               Halong Booking
             </router-link>
           </h3>
         </div>
-        <div class="p-3 font-weight-bold">
-          Hướng dẫn du lịch
-        </div>
-        <div class="p-3">
-          <a href="tel:84963489262"><i class="fas fa-phone-alt"></i> (849) 6348 9262</a>
-        </div>
-        <div class="p-3">
-          <a href="mailto:contact@halongbooking.com"><i class="fas fa-envelope"></i> contact@halongbooking.com</a>
+        <div class="col-6 d-flex justify-content-end">
+          <div class="p-3 font-weight-bold d-none d-xl-block overflow-hidden text-nowrap">
+            Hướng dẫn du lịch
+          </div>
+          <div class="p-3 d-none d-md-block overflow-hidden text-nowrap">
+            <a href="tel:84963489262"><i class="fas fa-phone-alt"></i> (849) 6348 9262</a>
+          </div>
+          <div class="p-3 d-none d-md-block overflow-hidden text-nowrap">
+            <a href="mailto:contact@halongbooking.com"><i class="fas fa-envelope"></i> contact@halongbooking.com</a>
+          </div>
         </div>
       </div>
     </header>
@@ -33,7 +35,7 @@
           </h3>
           <div>Copyright 2019 triavo | Bảo lưu bản quyền.</div>
         </div>
-        <div class="mx-5 text-left">
+        <div class="mx-5 text-left d-none d-lg-block">
           <h5 class="font-weight-bold">
             Hướng dẫn du lịch
           </h5>
@@ -42,7 +44,7 @@
           </div>
           <div>Món ăn ngon ở Hạ Long</div>
         </div>
-        <div class="mx-5 text-left">
+        <div class="mx-5 text-left d-none d-md-block">
           <h5 class="font-weight-bold">
             Liên hệ
           </h5>
