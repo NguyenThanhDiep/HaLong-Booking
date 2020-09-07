@@ -19,30 +19,32 @@
             </div>
         </div>
         <div>
-            <div class="d-flex mb-5 text-left" v-for="(room, index) in hotel.rooms">
-                <div class="d-flex flex-grow-1 flex-column">
-                    <div class="font-weight-bold mb-2">
+            <div class="row mb-5 text-left" v-for="(room, index) in hotel.rooms">
+                <div class="col-7 col-md-9 d-flex flex-grow-0 flex-md-grow-1 flex-column">
+                    <div class="font-weight-bold mb-2 text-nowrap">
                         {{room.name}}
                     </div>
                     <div class="d-flex flex-row">
-                        <div class="mr-5">
+                        <div class="mr-5 d-none d-lg-block">
                             <b-img :src="room.srcImg" fluid :alt="'Room Image ' + index"></b-img>
                         </div>
-                        <div class="mx-5">
-                            <div class="font-weight-bold">Miễn phí</div>
-                            <div v-for="freeService in room.freeServices" class="black small">
-                                - {{freeService}}
+                        <div class="row w-100">
+                            <div class="col-7 col-md-6 pl-5">
+                                <div class="font-weight-bold text-nowrap">Miễn phí</div>
+                                <div v-for="freeService in room.freeServices" class="black small text-nowrap">
+                                    - {{freeService}}
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="font-weight-bold">Sức chứa</div>
-                            <div v-for="capInfo in room.capacity" class="black small">
-                                - {{capInfo}}
+                            <div class="col-5 col-md-6 d-none d-md-block">
+                                <div class="font-weight-bold text-nowrap">Sức chứa</div>
+                                <div v-for="capInfo in room.capacity" class="black small text-nowrap">
+                                    - {{capInfo}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex flex-column align-items-start">
+                <div class="col-5 col-md-3 text-right d-flex flex-column align-items-end pr-4">
                     <div class="yellow font-weight-bold large">{{room.price | number-masked}}đ</div>
                     <div>/đêm</div>
                     <div class="mt-auto">
