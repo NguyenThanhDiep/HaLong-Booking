@@ -6,7 +6,7 @@
         <h5>Các khách sạn nổi bật</h5>
         <div class="px-5">
             <b-card-group deck v-for="(array, indexArr) in hotelsFormat" :key="indexArr">
-                <b-card :class="[index==3?'d-none d-lg-block':'', index==2?'d-none d-md-block':'']" no-body v-for="(hotel, index) in array" :key="hotel.name" class="m-2" @click="onClickHotelImg(hotel.id)">
+                <b-card :class="[index==3?'d-none d-lg-block':index==2?'d-none d-md-block':'']" no-body v-for="(hotel, index) in array" :key="hotel.name" class="m-2" @click="onClickHotelImg(hotel.id)">
                     <div class="card-hotel">
                         <b-card-img-lazy :src="hotel.srcImg" :alt="'Hotel' + index"></b-card-img-lazy>
                     </div>
@@ -22,7 +22,7 @@
         <h5>Cảnh đẹp ở Hạ Long</h5>
         <div class="px-5">
             <b-card-group deck v-for="(array, indexArr) in scenesFormat" :key="indexArr">
-                <b-card :class="[index==3?'d-none d-lg-block':'', index==2?'d-none d-md-block':'']" no-body v-for="(scene, index) in array" :key="scene.name" class="m-2">
+                <b-card :class="[index==3?'d-none d-lg-block':index==2?'d-none d-md-block':'']" no-body v-for="(scene, index) in array" :key="scene.name" class="m-2">
                     <div class="card-hotel">
                         <b-card-img-lazy :src="scene.srcImg" :alt="'Scene' + index"></b-card-img-lazy>
                     </div>
@@ -37,7 +37,7 @@
         <h5>Món ăn ngon ở Hạ Long</h5>
         <div class="px-5">
             <b-card-group deck v-for="(array, indexArr) in dishesFormat" :key="indexArr">
-                <b-card :class="[index==3?'d-none d-lg-block':'', index==2?'d-none d-md-block':'']" no-body v-for="(dish, index) in array" :key="dish.name" class="m-2">
+                <b-card :class="[index==3?'d-none d-lg-block':index==2?'d-none d-md-block':'']" no-body v-for="(dish, index) in array" :key="dish.name" class="m-2">
                     <div class="card-hotel">
                         <b-card-img-lazy :src="dish.srcImg" :alt="'Dish' + index"></b-card-img-lazy>
                     </div>
