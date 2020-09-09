@@ -33,7 +33,8 @@
         </div>
     </div>
     <div class="row text-left">
-        <div class="col-3 p-3 pl-4">
+        <!-- Search Menu when Screen Large -->
+        <div class="col-3 p-3 pl-4 d-none d-lg-block">
             <div class="panel-filter p-3">
                 <div class="mb-3">
                     <div class="font-weight-bold">Theo mức giá</div>
@@ -75,8 +76,54 @@
                 </div>
             </div>
         </div>
-        <div class="col-9 text-left">
+        <!-- Search Menu in Sidebar when Screen small -->
+        <b-sidebar id="search-menu-sidebar" right shadow='lg' backdrop backdrop-variant="transparent" no-header sidebar-class="d-lg-none">
+            <div class="p-3">
+                <div class="mb-3">
+                    <div class="font-weight-bold">Theo mức giá</div>
+                    <div class="d-flex justify-content-between">
+                        <div>{{minPrice | number-masked}}đ</div>
+                        <div>{{maxPrice | number-masked}}đ</div>
+                    </div>
+                    <div class="filter-price-area">
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="firstPrice"></b-form-input>
+                        <b-form-input type="range" min="0" max="5000000" step="100000" v-model="secondPrice"></b-form-input>
+                    </div>
+                    <b-form-checkbox class="black small" v-model="filterIsSale">Đang giảm giá</b-form-checkbox>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Theo tiêu chuẩn sao</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterStars" stacked>
+                            <b-form-checkbox v-for="star in starHotel" :key="star" :value="star">
+                                <i class="fas fa-star yellow" v-for="s in star"></i>
+                            </b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Dịch vụ miễn phí</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filterFreeServices" stacked>
+                            <b-form-checkbox v-for="freeService in freeServiceHotel" :key="freeService.code"
+                                :value="freeService.code">{{freeService.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+                <div>
+                    <div class="font-weight-bold">Các tiện ích</div>
+                    <b-form-group>
+                        <b-form-checkbox-group v-model="filerServices" stacked>
+                            <b-form-checkbox v-for="service in serviceHotel" :key="service.code" :value="service.code">
+                                {{service.name}}</b-form-checkbox>
+                        </b-form-checkbox-group>
+                    </b-form-group>
+                </div>
+            </div>
+        </b-sidebar>
+        <div class="col-12 col-lg-9 text-left">
             <div class="d-flex justify-content-start p-3">
+                <div class="d-lg-none m-0 mr-3 btn py-0" v-b-toggle.search-menu-sidebar><i class="fas fa-bars"></i></div>
                 <div class="font-weight-bold">Sắp xếp theo</div>
                 <div class="mx-5 pointer" @click="onClickSortStar">
                     Tiêu chuẩn sao 
