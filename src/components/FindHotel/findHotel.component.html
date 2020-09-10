@@ -124,25 +124,25 @@
         <div class="col-12 col-lg-9 text-left">
             <div class="d-flex justify-content-start p-3">
                 <div class="d-lg-none m-0 mr-3 btn py-0" v-b-toggle.search-menu-sidebar><i class="fas fa-bars"></i></div>
-                <div class="font-weight-bold">Sắp xếp theo</div>
-                <div class="mx-5 pointer" @click="onClickSortStar">
+                <div class="font-weight-bold text-nowrap">Sắp xếp theo</div>
+                <div class="mx-2 mx-md-5 pointer text-nowrap" @click="onClickSortStar">
                     Tiêu chuẩn sao 
                     <i :class="['fas', sortStarIcon]"></i>
                 </div>
-                <div class="pointer" @click="onClickSortPrice">
+                <div class="pointer text-nowrap" @click="onClickSortPrice">
                     Giá phòng 
                     <i :class="['fas', sortPriceIcon]"></i>
                 </div>
-                <div class="ml-auto font-weight-bold">
+                <div class="ml-auto font-weight-bold text-nowrap d-none d-sm-block">
                     {{hotelsFiltered.length}} khách sạn phù hợp
                 </div>
             </div>
-            <div class="my-3">
+            <div class="my-3 pr-md-5 pr-xl-0">
                 <b-row v-for="(hotel, index) in hotelsFiltered" :key="hotel.name" class="p-3">
-                    <b-col cols="4">
+                    <div class="col-md-5 col-lg-5 col-xl-4 d-none d-md-block">
                         <b-img :src="hotel.srcImg" fluid :alt="'Card Image ' + index"></b-img>
-                    </b-col>
-                    <b-col cols="5" class="d-flex flex-column">
+                    </div>
+                    <div class="col-8 col-md-5 col-lg-5 col-xl-5 d-flex flex-column">
                         <div class="title">Khách sạn {{hotel.name}}</div>
                         <div class="yellow"><i class="fas fa-star" v-for="star in hotel.star"></i></div>
                         <div><span class="black">{{hotel.address}}</span> <b-button variant="link"><i class="fas fa-map-marker-alt"></i> Bản đồ</b-button></div>
@@ -152,12 +152,12 @@
                         </div>
                         <div v-if="!hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=true" class="pointer">...hiện thêm >></div>
                         <div v-if="hotel.isShowAll && hotel.totalServises>5" @click="hotel.isShowAll=false" class="pointer"><< thu gọn</div>
-                    </b-col>
-                    <b-col cols="3" class="d-flex flex-column">
+                    </div>
+                    <div class="col-4 col-md-2 col-lg-2 col-xl-3 d-flex flex-column">
                         <div class="yellow font-weight-bold">{{hotel.price | number-masked}}đ</div>
                         <div>/ đêm</div>
-                        <div class="mt-auto"><b-button variant="primary" @click="onClickBookHotel(hotel.id)">Đặt khách sạn</b-button></div>
-                    </b-col>
+                        <div class="mt-auto"><b-button class="text-nowrap" variant="primary" @click="onClickBookHotel(hotel.id)">Đặt khách sạn</b-button></div>
+                    </div>
                 </b-row>
             </div>
         </div>

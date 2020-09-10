@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="overflow-hidden"
+  >
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -7,7 +10,7 @@
     <header>
       <div class="row align-items-center">
         <div class="col-6 p-3 px-5 text-left">
-          <h3>
+          <h3 class="text-nowrap">
             <router-link to="/">
               Halong Booking
             </router-link>

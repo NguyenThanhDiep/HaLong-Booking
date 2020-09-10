@@ -83,9 +83,9 @@
                 </div>
                 <div class="col-lg-5">
                     <div class="title mb-3">Tóm tắt thông tin</div>
-                    <div class="row">
-                        <div class="col-4"><img :src="bookingHotel.srcImg" class="img-fluid w-100 rounded" /></div>
-                        <div class="col-8">
+                    <div class="row px-3 px-lg-0">
+                        <div class="py-1 col-10 col-sm-5 col-lg-10 col-xl-5"><img :src="bookingHotel.srcImg" class="img-fluid w-100 rounded" /></div>
+                        <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
                             <div class="font-weight-bold">{{bookingHotel.name}}</div>
                             <div><i class="fas fa-star yellow" v-for="s in bookingHotel.star"></i></div>
                             <div>{{bookingHotel.address}}</div>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex my-3">
+                    <div class="d-flex my-3 justify-content-center justify-content-lg-start">
                         <div class="text-right ml-3">
                             <div class="font-weight-bold">Ngày nhận phòng</div>
                             <div>{{checkInDate}}</div>
@@ -111,21 +111,21 @@
                             <div>{{checkOutDate}}</div>
                         </div>
                     </div>
-                    <div>
+                    <div class="px-3 px-lg-0">
                         <div class="d-flex">
-                            <div class="flex-grow-1" v-html="billAdult.text"></div>
+                            <div class="flex-grow-1 pl-xl-3" v-html="billAdult.text"></div>
                             <div v-if="!!billAdult.price">{{billAdult.price | number-masked}}đ</div>
                         </div>
                         <div class="d-flex">
-                            <div class="flex-grow-1" v-html="billChildren.text"></div>
+                            <div class="flex-grow-1 pl-xl-3" v-html="billChildren.text"></div>
                             <div v-html="billChildren.price"></div>
                         </div>
                         <div class="d-flex">
-                            <div class="flex-grow-1" v-html="billBaby.text"></div>
+                            <div class="flex-grow-1 pl-xl-3" v-html="billBaby.text"></div>
                             <div v-html="billBaby.price"></div>
                         </div>
                     </div>
-                    <div class="row font-weight-bold text-right my-3">
+                    <div class="row font-weight-bold text-right my-3 px-3 px-lg-0">
                         <div class="col-8">Giá tạm tính</div>
                         <div v-if="!!billAdult.price" class="col-4 orange">{{billAdult.price | number-masked}}đ</div>
                     </div>
@@ -185,7 +185,7 @@
                 </div>
                 <div class="d-flex">
                     <div class="font-weight-bold flex-grow-1">Giá tạm tính:</div>
-                    <div>{{billAdult.price | number-masked}}đ</div>
+                    <div class="font-italic font-weight-bold">{{billAdult.price | number-masked}}đ</div>
                 </div>
             </div>
             <div class="d-flex justify-content-center mt-3">
