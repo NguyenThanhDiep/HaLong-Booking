@@ -247,4 +247,8 @@ export default class FindHotelComponent extends Vue {
         if (!!this.checkOutDate && !moment(this.checkOutDate).isSameOrAfter(moment())) return 'Ngày trả phòng phải sau ngày hôm nay';
         return '';
     }
+
+    onClickMap() {
+        window.open('https://goo.gl/maps/6r9oNba2E3VoMJ9P9', '_blank');
+    }
 }
