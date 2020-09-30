@@ -27,17 +27,17 @@ export default class SearchComponent extends Vue {
 
     get validateCheckInDate(): boolean | null {
         if (!!this.checkInDate) {
-            return moment(this.checkInDate).isSameOrAfter(moment());
+            return moment(this.checkInDate).isSameOrAfter(moment().startOf('day'), 'dates');
         }
         return null;
     }
 
     get validateCheckOutDate(): boolean | null {
         if (!!this.checkInDate && !!this.checkOutDate) {
-            return moment(this.checkOutDate).isSameOrAfter(this.checkInDate);
+            return moment(this.checkOutDate).isAfter(moment().startOf('day'), 'dates') && moment(this.checkOutDate).isAfter(this.checkInDate);
         }
         if (!!this.checkOutDate) {
-            return moment(this.checkOutDate).isSameOrAfter(moment());
+            return moment(this.checkOutDate).isAfter(moment().startOf('day'), 'dates');
         }
         return null;
     }
@@ -47,13 +47,13 @@ export default class SearchComponent extends Vue {
     }
 
     get wrongCheckInDateInfo(): string {
-        if (!!this.checkInDate && !moment(this.checkInDate).isSameOrAfter(moment())) return 'Ngày nhận phòng phải bằng hoặc sau ngày hôm nay';
+        if (!!this.checkInDate && !moment(this.checkInDate).isSameOrAfter(moment().startOf('day'), 'dates')) return 'Ngày nhận phòng phải bằng hoặc sau ngày hôm nay';
         return '';
     }
 
     get wrongCheckOutDateInfo(): string {
-        if (!!this.checkInDate && !!this.checkOutDate && !moment(this.checkOutDate).isSameOrAfter(this.checkInDate)) return 'Ngày trả phòng phải sau ngày nhận phòng';
-        if (!!this.checkOutDate && !moment(this.checkOutDate).isSameOrAfter(moment())) return 'Ngày trả phòng phải sau ngày hôm nay';
+        if (!!this.checkInDate && !!this.checkOutDate && !moment(this.checkOutDate).isAfter(this.checkInDate)) return 'Ngày trả phòng phải sau ngày nhận phòng';
+        if (!!this.checkOutDate && !moment(this.checkOutDate).isAfter(moment().startOf('day'), 'dates')) return 'Ngày trả phòng phải sau ngày hôm nay';
         return '';
     }
 }
