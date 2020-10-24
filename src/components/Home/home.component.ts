@@ -73,4 +73,8 @@ export default class HomeComponent extends Vue {
     onClickHotelImg(hotelId: number) {
         this.$router.push({ name: 'Hotel', params: { hotelId: hotelId.toString() } });
     }
+
+    onClickScene() {
+        this.$router.push({ name: 'TravelExperience' });
+    }
 }

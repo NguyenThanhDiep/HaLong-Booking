@@ -1,0 +1,103 @@
+.travel-experience {
+    color: $color-black;
+    text-align: left;
+    font-size: 16px;
+    .scene {
+        margin: 1.5em 0 0;
+    }
+    div {
+        padding-top: 0.5em;
+        margin: 0;
+        p:first-child {
+            padding-top: 0;
+        }
+    }
+    p {
+        padding: 0.3em 0 0 0;
+        margin: 0;
+    }
+    .title {
+        color: $color-bold-red;
+        font-weight: bold;
+    }
+    .sub-title {
+        color: $color-green;
+        font-weight: bold;
+    }
+    .sub-title-2 {
+        color: $color-bold-blue;
+        font-weight: bold;
+        padding-left: 25px;;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    .img-title {
+        text-align: center;
+        font-style: italic;
+    }
+    .table-content {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        border: 2px solid $color-blue;
+        border-radius: 10px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        color: #87481f;
+        font-size: 13px;
+        ul {
+            padding: 0;
+            margin: 0;
+            li {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                position: relative;
+                border-left: 2px solid $color-blue;
+                padding-left: 17px;
+                padding-bottom: 8px;
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    left: -8px;
+                    background: $color-blue;
+                    height: 14px;
+                    width: 14px;
+                    content: "";
+                    border-radius: 50%;
+                }
+                a {
+                    position: relative;
+                    top: -2px;
+                }
+            }
+            li:last-child {
+                border-left: 2px solid $color-white;
+            }
+        }
+        ul.sub-table-content {
+            padding: 0;
+            margin: 0;
+            li {
+                padding: 0;
+                margin-left: 1.5rem;
+                list-style: circle;
+                position: relative;
+                border-left: 0;
+                padding-left: 0;
+                padding-bottom: 0;
+                &::before {
+                    position: absolute;
+                    top: 0;
+                    left: -8px;
+                    background: $color-blue;
+                    height: 0;
+                    width: 0;
+                    content: "";
+                    border-radius: 0;
+                }
+            }
+        }
+    }
+}

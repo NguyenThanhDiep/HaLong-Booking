@@ -22,7 +22,9 @@
         <h5>Cảnh đẹp ở Hạ Long</h5>
         <div class="px-5">
             <b-card-group deck v-for="(array, indexArr) in scenesFormat" :key="indexArr">
-                <b-card :class="[index==3?'d-none d-lg-block':index==2?'d-none d-md-block':'']" no-body v-for="(scene, index) in array" :key="scene.name" class="m-2">
+                <b-card :class="[index==3?'d-none d-lg-block':index==2?'d-none d-md-block':'']" no-body 
+                    v-for="(scene, index) in array" :key="scene.name" class="m-2"
+                    @click="onClickScene">
                     <div class="card-hotel">
                         <b-card-img-lazy :src="scene.srcImg" :alt="'Scene' + index"></b-card-img-lazy>
                     </div>
