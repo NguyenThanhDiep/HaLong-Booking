@@ -39,7 +39,7 @@
     .table-content {
         position: -webkit-sticky;
         position: sticky;
-        top: 0;
+        top: 10px;
         border: 2px solid $color-blue;
         border-radius: 10px;
         padding: 15px 20px;
@@ -101,3 +101,19 @@
         }
     }
 }
+
+#scrollTopBtn {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    display: none;
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    //padding-bottom: 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    &:hover {
+        background-color: $color-blue;
+    }
+  }
